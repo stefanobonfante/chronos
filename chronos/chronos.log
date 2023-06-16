@@ -1,0 +1,29 @@
+2023-06-16 15:38:01.313  INFO 5344 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Starting ChronosApplication using Java 11.0.2 on NBK330 with PID 5344 (C:\Projects\PCTO - Jupiter\chronos\target\classes started by stefano.bonfante in C:\Projects\PCTO - Jupiter\chronos)
+2023-06-16 15:38:01.322 DEBUG 5344 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Running with Spring Boot v2.4.3, Spring v5.3.4
+2023-06-16 15:38:01.322  INFO 5344 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : The following profiles are active: dev
+2023-06-16 15:38:01.550  INFO 5344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-16 15:38:01.550  INFO 5344 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-16 15:38:04.545  INFO 5344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-16 15:38:04.669  INFO 5344 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 1 JPA repository interfaces.
+2023-06-16 15:38:06.994  INFO 5344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-06-16 15:38:07.057  INFO 5344 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-16 15:38:07.057  INFO 5344 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2023-06-16 15:38:07.544  INFO 5344 --- [restartedMain] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring embedded WebApplicationContext
+2023-06-16 15:38:07.544  INFO 5344 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5994 ms
+2023-06-16 15:38:08.564  INFO 5344 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-16 15:38:08.690  INFO 5344 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2023-06-16 15:38:09.028  INFO 5344 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-16 15:38:09.327  INFO 5344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-16 15:38:10.040  INFO 5344 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-16 15:38:10.065  INFO 5344 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2023-06-16 15:38:11.424  INFO 5344 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-16 15:38:11.444  INFO 5344 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-16 15:38:12.632  WARN 5344 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-16 15:38:13.002  INFO 5344 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-16 15:38:13.332  INFO 5344 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-16 15:38:13.897  INFO 5344 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/chronos'
+2023-06-16 15:38:14.510  INFO 5344 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Started ChronosApplication in 14.652 seconds (JVM running for 16.825)
+2023-06-16 15:40:04.708  INFO 5344 --- [http-nio-8080-exec-7] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-16 15:40:04.719  INFO 5344 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-16 15:40:04.736  INFO 5344 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2023-06-16 15:40:04.791  WARN 5344 --- [http-nio-8080-exec-7] o.s.web.servlet.PageNotFound             : No mapping for GET /chronos/

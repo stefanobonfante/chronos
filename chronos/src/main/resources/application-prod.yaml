@@ -1,0 +1,16 @@
+## this file will be loaded only in the production environment
+server:
+  port: 9090
+
+logging:
+  file:
+    name: chronos.log
+  level:
+    it:
+      addvalue:
+        chronos: INFO
+      org:
+        hibernate:
+          SQL: INFO
+        springframework:
+          web: INFO

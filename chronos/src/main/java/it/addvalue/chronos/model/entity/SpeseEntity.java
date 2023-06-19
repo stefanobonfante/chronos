@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "TB_SPESE")
 public class SpeseEntity {
     @Id
+    @Column(name="ID_SPESE")
     private String idSpese;
 
     @Column(name="COD_UTENTE")
@@ -65,5 +66,23 @@ public class SpeseEntity {
 
     @Column(name="TRASFERTA")
     private int trasferta;
+
+    @Column(name="FLG_ANDATA")
+    private String flgAndata;
+
+    @Column(name="FLG_RITORNO")
+    private String flgRitorno;
+
+    @Column(name="TOT_ORE_VIAGGIO")
+    private int totOreViaggio;
+
+    @Column(name="REPERIBILITA")
+    private int reperibilita;
+
+    @Column(name="FLG_AUTO_PF")
+    private String glgAutoPf;
+
+    @Column(name="FLG_AUTO_AR")
+    private String flgAutoAr;
 
 }

@@ -1,4 +1,4 @@
-package it.addvalue.chronos.core.controller;
+package it.addvalue.chronos.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,7 +27,7 @@ public class SpeseController {
     }
 
 
-    @GetMapping(path = "{anno}/{mese]/{giorno}/{codUtente}")
+    @GetMapping(path = "{anno}/{mese}/{giorno}/{codUtente}")
     public ResponseEntity<List<SpeseEntity>> recuperoSpeseGiorno2(@PathVariable int anno,@PathVariable int mese,@PathVariable int giorno,@PathVariable String codUtente) throws IOException {
         return ResponseEntity.ok(speservice.recuperoSpeseGiorno(anno,mese,giorno,codUtente));
     }

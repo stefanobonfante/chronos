@@ -24,13 +24,13 @@ public class CarichiService {
             return getElencoCarichiMese(anno, mese, codiceUtente);
         } else {
             // Recupera i carichi del giorno specificato
-            List<CarichiEntity> carichi = carichiRepository.findByAnnoAndMeseAndGiornoAndCodUtenteOrderByAnnoAscMeseAscGiornoAscCodJobAsc(anno, mese, giorno, codiceUtente);
+            List<CarichiEntity> carichi = carichiRepository.query2(anno, mese, giorno, codiceUtente);
             return mapToCarichiDto(carichi);
         }
     }
 
     public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
-        List<CarichiEntity> carichi = carichiRepository.findByAnnoAndMeseAndCodUtenteOrderByAnnoAscMeseAscGiornoAscCodJobAsc(anno, mese, codiceUtente);
+        List<CarichiEntity> carichi = carichiRepository.query1(anno, mese, codiceUtente);
         return mapToCarichiDto(carichi);
     }
 
@@ -58,7 +58,7 @@ public class CarichiService {
         dto.setAnno(carichiEntity.getAnno());
         dto.setMese(carichiEntity.getMese());
         dto.setGiorno(carichiEntity.getGiorno());
-        dto.setcodUtente(carichiEntity.getcodUtente());
+        dto.setCodUtente(carichiEntity.getCodUtente());
         dto.setCodJob(carichiEntity.getCodJob());
         // Mappa altri campi...
         return dto;
@@ -76,7 +76,7 @@ public class CarichiService {
         entity.setAnno(carichiDTO.getAnno());
         entity.setMese(carichiDTO.getMese());
         entity.setGiorno(carichiDTO.getGiorno());
-        entity.setcodUtente(carichiDTO.getcodUtente());
+        entity.setCodUtente(carichiDTO.getCodUtente());
         entity.setCodJob(carichiDTO.getCodJob());
         // Mappa altri campi...
         return entity;

@@ -8,7 +8,7 @@ import java.util.List;
 public interface CarichiRepository extends JpaRepository<CarichiEntity,String> {
 
 
-    List<CarichiEntity> findByAnnoAndMeseAndCodUtenteOrderByAnnoAscMeseAscGiornoAscCodJobAsc(int anno, int mese, String codiceUtente);
+    List<CarichiEntity> query1(int anno, int mese, String codiceUtente);
 
-    List<CarichiEntity> findByAnnoAndMeseAndGiornoAndCodUtenteOrderByAnnoAscMeseAscGiornoAscCodJobAsc(int anno, int mese, Integer giorno, String codiceUtente);
+    List<CarichiEntity> query2(int anno, int mese, Integer giorno, String codiceUtente);
 }

@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -74,13 +75,13 @@ public class SpeseEntity {
     private String flgRitorno;
 
     @Column(name="TOT_ORE_VIAGGIO")
-    private int totOreViaggio;
+    private BigDecimal totOreViaggio;
 
     @Column(name="REPERIBILITA")
     private int reperibilita;
 
     @Column(name="FLG_AUTO_PF")
-    private String glgAutoPf;
+    private String flgAutoPf;
 
     @Column(name="FLG_AUTO_AR")
     private String flgAutoAr;

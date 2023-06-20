@@ -4,6 +4,8 @@ import it.addvalue.chronos.model.dto.SpeseDto;
 import it.addvalue.chronos.model.entity.SpeseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class SpesaDtoSpeseEntityMapper implements IDtoEntityBidirectionalMapper<SpeseDto, SpeseEntity> {
 
@@ -23,5 +25,15 @@ public class SpesaDtoSpeseEntityMapper implements IDtoEntityBidirectionalMapper<
     speseEntity.setMese(speseDto.getMese());
     speseEntity.setCodUtente(speseDto.getCodUtente());
     return speseEntity;
+  }
+
+  @Override
+  public List<SpeseDto> toDtos(List<SpeseEntity> entityList) {
+    return IDtoEntityBidirectionalMapper.super.toDtos(entityList);
+  }
+
+  @Override
+  public List<SpeseEntity> toEntities(List<SpeseDto> dtoList) {
+    return IDtoEntityBidirectionalMapper.super.toEntities(dtoList);
   }
 }

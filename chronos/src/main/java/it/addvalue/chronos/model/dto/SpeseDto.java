@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -45,4 +46,15 @@ public class SpeseDto {
 
     private int trasferta;
 
+    private String flgAndata;
+
+    private String flgRitorno;
+
+    private BigDecimal totOreViaggio;
+
+    private int reperibilita;
+
+    private String flgAutoPf;
+
+    private String flgAutoAr;
 }

@@ -8,19 +8,19 @@ import it.addvalue.chronos.model.entity.User;
 @Component
 public class UserDtoEntityMapper implements IDtoEntityBidirectionalMapper<UserDto, User> {
 
-    @Override
-    public UserDto toDto(User entity) {
-        UserDto dto = new UserDto();
-        dto.setUserCode(entity.getUserCode());
-        dto.setLevel(entity.getLevel());
-        return dto;
-    }
+  @Override
+  public UserDto toDto(User entity) {
+    UserDto dto = new UserDto();
+    dto.setUserCode(entity.getUserCode());
+    dto.setLevel(entity.getLevel());
+    return dto;
+  }
 
-    @Override
-    public User toEntity(UserDto dto) {
-        User entity = new User();
-        entity.setUserCode(dto.getUserCode());
-        entity.setLevel(dto.getLevel());
-        return entity;
-    }
+  @Override
+  public User toEntity(UserDto dto) {
+    User entity = new User();
+    entity.setUserCode(dto.getUserCode());
+    entity.setLevel(dto.getLevel());
+    return entity;
+  }
 }

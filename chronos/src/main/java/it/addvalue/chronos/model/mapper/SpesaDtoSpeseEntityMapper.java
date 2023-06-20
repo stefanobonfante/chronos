@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class SpesaDtoSpeseEntityMapper implements IDtoEntityBidirectionalMapper<SpeseDto, SpeseEntity> {
+public class SpesaDtoSpeseEntityMapper
+    implements IDtoEntityBidirectionalMapper<SpeseDto, SpeseEntity> {
 
   @Override
   public SpeseDto toDto(SpeseEntity speseEntity) {

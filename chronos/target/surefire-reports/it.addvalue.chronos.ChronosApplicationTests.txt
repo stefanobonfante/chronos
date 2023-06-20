@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: it.addvalue.chronos.ChronosApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 26.389 s <<< FAILURE! - in it.addvalue.chronos.ChronosApplicationTests
+contextLoads  Time elapsed: 4.764 s  <<< ERROR!
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+	at it.addvalue.chronos.ChronosApplicationTests.contextLoads(ChronosApplicationTests.java:14)
+Caused by: org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+	at it.addvalue.chronos.ChronosApplicationTests.contextLoads(ChronosApplicationTests.java:14)
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at it.addvalue.chronos.ChronosApplicationTests.contextLoads(ChronosApplicationTests.java:14)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at it.addvalue.chronos.ChronosApplicationTests.contextLoads(ChronosApplicationTests.java:14)
+Caused by: java.net.BindException: Address already in use: bind
+	at it.addvalue.chronos.ChronosApplicationTests.contextLoads(ChronosApplicationTests.java:14)
+

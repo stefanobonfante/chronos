@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: it.addvalue.chronos.core.exception.RestResponseEntityExceptionHandlerTests
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.323 s - in it.addvalue.chronos.core.exception.RestResponseEntityExceptionHandlerTests

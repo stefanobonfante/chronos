@@ -16,74 +16,73 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "TB_SPESE")
 public class SpeseEntity {
-    @Id
-    @Column(name="ID_SPESE")
-    private String idSpese;
+  @Id
+  @Column(name = "ID_SPESE")
+  private String idSpese;
 
-    @Column(name="COD_UTENTE")
-    private String codUtente;
+  @Column(name = "COD_UTENTE")
+  private String codUtente;
 
-    @Column(name="COD_JOB")
-    private String codJob;
+  @Column(name = "COD_JOB")
+  private String codJob;
 
-    @Column(name="ANNO")
-    private int anno;
+  @Column(name = "ANNO")
+  private int anno;
 
-    @Column(name="MESE")
-    private int mese;
+  @Column(name = "MESE")
+  private int mese;
 
-    @Column(name="GIORNO")
-    private int giorno;
+  @Column(name = "GIORNO")
+  private int giorno;
 
-    @Column(name="PERCORSO")
-    private String percorso;
+  @Column(name = "PERCORSO")
+  private String percorso;
 
-    @Column(name="KM_PERCORSI")
-    private int kmPercorsi;
+  @Column(name = "KM_PERCORSI")
+  private int kmPercorsi;
 
-    @Column(name="RIMBORSO_KM")
-    private int rimborsoKm;
+  @Column(name = "RIMBORSO_KM")
+  private int rimborsoKm;
 
-    @Column(name="CARBURANTE")
-    private int carburante;
+  @Column(name = "CARBURANTE")
+  private int carburante;
 
-    @Column(name="PEDAGGI")
-    private int pedaggi;
+  @Column(name = "PEDAGGI")
+  private int pedaggi;
 
-    @Column(name="ALTRO")
-    private int altro;
+  @Column(name = "ALTRO")
+  private int altro;
 
-    @Column(name="ANTICIPI")
-    private int anticipi;
+  @Column(name = "ANTICIPI")
+  private int anticipi;
 
-    @Column(name="PARCHEGGI")
-    private int parcheggi;
+  @Column(name = "PARCHEGGI")
+  private int parcheggi;
 
-    @Column(name="TRASPORTI")
-    private int trasporti;
+  @Column(name = "TRASPORTI")
+  private int trasporti;
 
-    @Column(name="TOT_SPESE")
-    private int totSpese;
+  @Column(name = "TOT_SPESE")
+  private int totSpese;
 
-    @Column(name="TRASFERTA")
-    private int trasferta;
+  @Column(name = "TRASFERTA")
+  private int trasferta;
 
-    @Column(name="FLG_ANDATA")
-    private String flgAndata;
+  @Column(name = "FLG_ANDATA")
+  private String flgAndata;
 
-    @Column(name="FLG_RITORNO")
-    private String flgRitorno;
+  @Column(name = "FLG_RITORNO")
+  private String flgRitorno;
 
-    @Column(name="TOT_ORE_VIAGGIO")
-    private BigDecimal totOreViaggio;
+  @Column(name = "TOT_ORE_VIAGGIO")
+  private BigDecimal totOreViaggio;
 
-    @Column(name="REPERIBILITA")
-    private int reperibilita;
+  @Column(name = "REPERIBILITA")
+  private int reperibilita;
 
-    @Column(name="FLG_AUTO_PF")
-    private String flgAutoPf;
+  @Column(name = "FLG_AUTO_PF")
+  private String flgAutoPf;
 
-    @Column(name="FLG_AUTO_AR")
-    private String flgAutoAr;
-
+  @Column(name = "FLG_AUTO_AR")
+  private String flgAutoAr;
 }

@@ -70,12 +70,4 @@ public class CarichiEntity {
 
     @Column(name = "FLG_LAVORO_REMOTO")
     private String flgLavoroRem;
-
-
-
-
-
-
-
-
 }

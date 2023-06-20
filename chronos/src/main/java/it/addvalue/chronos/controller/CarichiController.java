@@ -32,12 +32,35 @@ public class CarichiController {
             return servizio;
         }
 
+        //punto 2.1.2
+        @RestController
+        @RequestMapping("/api")
+        public class GestioneMesiController {
+            private CarichiService carichiService; // Riferimento al service per il recupero dei carichi
+
+            @GetMapping("/carichi")
+            public List<carichiDTO> getElencoCarichi(
+                    @RequestParam("anno") int anno,
+                    @RequestParam("mese") int mese,
+                    @RequestParam("codiceUtente") String codiceUtente,
+                    @RequestParam(value = "giorno", required = false) Integer giorno
+            ) {
+                if (giorno != null) {
+                    return carichiService.getElencoCarichiGiorno(anno, mese, giorno, codiceUtente);
+                } else {
+                    return carichiService.getElencoCarichiMese(anno, mese, codiceUtente);
+                }
+            }
+
+            // Altri metodi del controller...
+        }
 
 
-    //metodo per eliminare nel controller
+        //metodo per eliminare nel controller
 
-    @DeleteMapping
-    public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione) throws EsecuzioneErrataException {
-        return ResponseEntity.ok(servizio.delete(eliminazione));
+        @DeleteMapping
+        public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione) throws EsecuzioneErrataException {
+            return ResponseEntity.ok(servizio.delete(eliminazione));
+        }
     }
 }

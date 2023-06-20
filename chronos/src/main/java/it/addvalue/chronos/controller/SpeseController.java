@@ -28,7 +28,12 @@ public class SpeseController {
 
 
     @GetMapping(path = "{anno}/{mese}/{giorno}/{codUtente}")
-    public ResponseEntity<List<SpeseEntity>> recuperoSpeseGiorno2(@PathVariable int anno,@PathVariable int mese,@PathVariable int giorno,@PathVariable String codUtente) throws IOException {
+    public ResponseEntity<List<SpeseEntity>> recuperoSpeseGiorno(@PathVariable int anno,@PathVariable int mese,@PathVariable int giorno,@PathVariable String codUtente) throws IOException {
         return ResponseEntity.ok(speservice.recuperoSpeseGiorno(anno,mese,giorno,codUtente));
+    }
+
+    @GetMapping(path = "{anno}/{mese}/{codUtente}")
+    public ResponseEntity<List<SpeseEntity>> recuperoSpeseMese(@PathVariable int anno,@PathVariable int mese,@PathVariable String codUtente) throws IOException {
+        return ResponseEntity.ok(speservice.recuperoSpeseMese(anno,mese,codUtente));
     }
 }

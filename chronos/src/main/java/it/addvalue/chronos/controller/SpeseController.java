@@ -37,17 +37,17 @@ public class SpeseController {
     }
 
     @PostMapping(path = "salvataggioSpese")
-    public void salvataggioSpese(@PathVariable List<SpeseDto> spese) throws IOException, Custom {
+    public void salvataggioSpese(List<SpeseDto> spese) throws IOException, Custom {
         service.filtroSpese(spese);
     }
 
-    @PutMapping(path = "{List<SpeseDto>}")
-    public void modificaSpese(@PathVariable List<SpeseDto> spese) throws IOException, Custom {
+    @PutMapping(path = "modificaSpese")
+    public void modificaSpese(List<SpeseDto> spese) throws IOException, Custom {
         service.filtroSpese(spese);
     }
 
-    @DeleteMapping(path = "/api/spese/")
-    public void cancellaSpese(List<SpeseEntity> spese) {
+    @DeleteMapping(path = "cancellaSpese")
+    public void cancellaSpese(List<SpeseEntity> spese) throws Custom{
         service.deleatElementi(spese);
 
     }

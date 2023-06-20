@@ -38,7 +38,9 @@ public class SpeseService {
 
     public void deleatElementi(List<SpeseEntity> spese) {
         for (SpeseEntity spesa : spese) {
-            repository.delete(spesa);
+            if (spesa.getMese() == LocalDate.now().getMonthValue()) {
+                repository.RecuperoSpesaDaEliminare(spesa.getIdSpese());
+            }
         }
     }
 

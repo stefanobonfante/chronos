@@ -27,7 +27,7 @@ public interface SpeseRepository extends JpaRepository <SpeseEntity,String>{
 
 
     @Query(value = "DELETE FROM TB_SPESE"+
-                    "where Idspese=?1", nativeQuery = true)
+                    "where ID_SPESE=?1", nativeQuery = true)
     int RecuperoSpesaDaEliminare(String speseId);
 
 

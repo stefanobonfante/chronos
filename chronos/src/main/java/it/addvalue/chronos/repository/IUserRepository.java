@@ -12,6 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?")
-    public Optional<List<User>> getLivelloUtente (String cod_utente);
+  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?")
+  public Optional<List<User>> getLivelloUtente(String cod_utente);
 }

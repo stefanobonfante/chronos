@@ -12,23 +12,19 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/api/carichi")
 public class CarichiController {
 
-    private final CarichiService servizio;
-
-
-    @RequestMapping("/api/carichi")
-    public class CarichiController {
         @Autowired
         CarichiService servizio;
 
 
         @GetMapping("/{year}/{month}/{day}/{usercode}")
-        public CarichiService carichi(@RequestParam(name = "year", required = true, defaultValue = "yearNotSpecified") String year,
-                                      @RequestParam(name = "month", required = true, defaultValue = "monthNotSpecified") String month,
-                                      @RequestParam(name = "day", required = false, defaultValue = "dayNotSpecified") String day,
+        public CarichiService carichi(@RequestParam(name = "year", required = true, defaultValue = "yearNotSpecified") int year,
+                                      @RequestParam(name = "month", required = true, defaultValue = "monthNotSpecified") int  month,
+                                      @RequestParam(name = "day", required = false, defaultValue = "dayNotSpecified") Integer day,
                                       @RequestParam(name = "usercode", required = true, defaultValue = "usercodeNotSpecified") String usercode) throws EsecuzioneErrataException {
-            servizio.getDailyCarichi();
+            servizio.getElencoCarichiGiorno(year, month, day, usercode);
             return servizio;
         }
 
@@ -61,5 +57,5 @@ public class CarichiController {
         public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione) throws EsecuzioneErrataException {
             return ResponseEntity.ok(servizio.delete(eliminazione));
         }
-    }
+
 }

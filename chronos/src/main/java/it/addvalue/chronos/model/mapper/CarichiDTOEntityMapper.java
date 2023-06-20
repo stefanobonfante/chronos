@@ -64,4 +64,13 @@ public class CarichiDTOEntityMapper implements IDtoEntityBidirectionalMapper<car
         return entity;
     }
 
+    @Override
+    public List<CarichiEntity> toEntities(List<carichiDTO> dtoList) {
+        return IDtoEntityBidirectionalMapper.super.toEntities(dtoList);
+    }
+
+    @Override
+    public List<carichiDTO> toDtos(List<CarichiEntity> entityList) {
+        return IDtoEntityBidirectionalMapper.super.toDtos(entityList);
+    }
 }

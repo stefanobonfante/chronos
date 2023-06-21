@@ -39,6 +39,12 @@ public class CarichiService {
     return mapToCarichiDto(carichi);
   }
 
+  //parte 4.1.1
+  public boolean getStatoMese(int anno, int mese, String codiceUtente, String stato) {
+    List<CarichiEntity> statoMeseList = userRepository.queryStatoMese(anno, mese, codiceUtente, stato);
+    return !statoMeseList.isEmpty();
+  }
+
   public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException {
     List<CarichiEntity> carichiEntities = mapToCarichiEntity(carichiDtoList);
     for (CarichiEntity carico : carichiEntities) {

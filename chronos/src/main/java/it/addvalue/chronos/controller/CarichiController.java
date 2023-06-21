@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/carichi")
+@RequestMapping("/api")
 public class CarichiController {
 
   @Autowired CarichiService servizio;
 
-  @GetMapping("/{year}/{month}/{day}/{usercode}")
+  @GetMapping("/carichi/{year}/{month}/{day}/{usercode}")
   public CarichiService carichi(
       @RequestParam(name = "year", required = true, defaultValue = "yearNotSpecified") int year,
       @RequestParam(name = "month", required = true, defaultValue = "monthNotSpecified") int month,
@@ -47,6 +47,11 @@ public class CarichiController {
         return carichiService.getElencoCarichiMese(anno, mese, codiceUtente);
       }
     }
+  }
+
+  @GetMapping("/stato-mesi/verifica-stato")
+  public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente){
+    return statoMese.equals("S");
   }
 
   // metodo per eliminare nel controller

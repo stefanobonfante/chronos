@@ -1,8 +1,12 @@
 package it.addvalue.chronos.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
+import it.addvalue.chronos.model.dto.UserDto;
+import it.addvalue.chronos.model.mapper.UserDtoEntityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +21,7 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
   protected static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
   @Autowired protected IUserRepository repository;
+  @Autowired protected UserDtoEntityMapper mapper;
 
   @Override
   public List<User> findAll() {
@@ -58,5 +63,19 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
         TABLE_NAME,
         model);
     repository.delete(model);
+  }
+
+  public List<UserDto>getListaUtenti(User user) throws EsecuzioneErrataException {
+    Optional<User> utente=repository.findById(user.getUserCode());
+    if(utente.isPresent()){
+     int livello= utente.get().getLevel();
+     if (livello > 5) {
+          return mapper.toDtos(repository.QuerylistaUtentiAuth(user.getUserCode()));
+      }else {
+          return mapper.toDtos(repository.QuerylistaUtentiNoAuth());
+     }
+    }else{
+      throw new EsecuzioneErrataException("utente non trovato");
+    }
   }
 }

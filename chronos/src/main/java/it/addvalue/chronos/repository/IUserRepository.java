@@ -7,6 +7,7 @@ import it.addvalue.chronos.model.entity.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,19 @@ import java.util.Optional;
 public interface IUserRepository extends JpaRepository<User, String> {
   @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?")
   public Optional<List<User>> getLivelloUtente(String cod_utente);
+
+  @Query(name = "select * " +
+          "from TB_UTENTI " +
+          "where CANCELLATO=”N” and COD_UTENTE=? "+
+          "order by COD_UTENTE asc, DES_UTENTE asc")
+  public List<User> QuerylistaUtentiAuth(String auth);
+
+  @Query(name = "select * " +
+          "from TB_UTENTI " +
+          "where CANCELLATO=”N” " +
+          "order by COD_UTENTE asc, DES_UTENTE asc")
+  public List<User> QuerylistaUtentiNoAuth();
+
 }
+
+

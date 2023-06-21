@@ -5,35 +5,32 @@ import it.addvalue.chronos.model.dto.carichiDTO;
 import it.addvalue.chronos.model.entity.CarichiEntity;
 import it.addvalue.chronos.model.mapper.CarichiDTOEntityMapper;
 import it.addvalue.chronos.repository.CarichiRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
-
-
-@AllArgsConstructor
+import java.util.Optional;
 @Service
 public class CarichiService {
+    private final CarichiRepository caricoRepository;
+    private CarichiDTOEntityMapper caricoEM;
 
-    CarichiRepository repoUno;
-
-    //metodo per eliminare elementi da una tabella
-
-    public boolean delete(List<carichiDTO> c) throws EsecuzioneErrataException {
-        List<CarichiEntity> cE= new CarichiDTOEntityMapper().toEntities(c);
-        for(CarichiEntity car:cE){
-            Month meseCarico=Month.of(car.getMese());
-            if(meseCarico.equals(LocalDate.now().getMonth())/*&& */){ // condizione da completare
-                repoUno.delete(car);
-            }else if(car==null){
-                throw new EsecuzioneErrataException("oggetto non trovato.");
+    @Autowired
+    public CarichiService(CarichiRepository caricoRepository, CarichiDTOEntityMapper caricoEM) {
+        this.caricoRepository = caricoRepository;
+        this.caricoEM = caricoEM;
+    }
+    public void modificaElencoCarichi(List<carichiDTO> carichiDTO) throws EsecuzioneErrataException {
+        List<CarichiEntity> lce = caricoEM.toEntities(carichiDTO);
+        for (CarichiEntity ce : lce) {
+            Optional<CarichiEntity> change = caricoRepository.findById(ce.getIdCarico());
+            if(change.isPresent()){
+                caricoRepository.save(change.get());
             }else{
-                throw new EsecuzioneErrataException("impossibile eseguire l'operazione.");
+                throw new EsecuzioneErrataException("Errore: campo null");
             }
         }
-        return true;
     }
+
+    public boolean isValido()
 }

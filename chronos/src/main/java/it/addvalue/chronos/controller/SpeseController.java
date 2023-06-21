@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class SpeseController {
     SpeseService service;
 
     @GetMapping(path = "{anno}/{mese}/{giorno}/{codUtente}")
-    public ResponseEntity<List<SpeseEntity>> recuperoSpeseGiorno(
+    public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseGiorno(
             @PathVariable int anno,
             @PathVariable int mese,
             @PathVariable int giorno,
@@ -30,24 +31,24 @@ public class SpeseController {
     }
 
     @GetMapping(path = "{anno}/{mese}/{codUtente}")
-    public ResponseEntity<List<SpeseEntity>> recuperoSpeseMese(
+    public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseMese(
             @PathVariable int anno, @PathVariable int mese, @PathVariable String codUtente)
             throws IOException {
         return ResponseEntity.ok(service.recuperoSpeseMese(anno, mese, codUtente));
     }
 
-    @PostMapping(path = "salvataggioSpese")
-    public void salvataggioSpese(List<SpeseDto> spese) throws IOException, Custom {
+    @PostMapping
+    public void salvataggioSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, Custom {
         service.filtroSpese(spese);
     }
 
-    @PutMapping(path = "modificaSpese")
-    public void modificaSpese(List<SpeseDto> spese) throws IOException, Custom {
+    @PutMapping
+    public void modificaSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, Custom {
         service.filtroSpese(spese);
     }
 
     @DeleteMapping(path = "cancellaSpese")
-    public void cancellaSpese(List<SpeseEntity> spese) throws Custom{
+    public void cancellaSpese(@RequestBody ArrayList<SpeseEntity> spese) throws Custom{
         service.deleatElementi(spese);
 
     }

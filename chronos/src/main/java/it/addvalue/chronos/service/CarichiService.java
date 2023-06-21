@@ -29,13 +29,13 @@ public class CarichiService {
       return getElencoCarichiMese(anno, mese, codiceUtente);
     } else {
       // Recupera i carichi del giorno specificato
-      List<CarichiEntity> carichi = carichiRepository.query2(anno, mese, giorno, codiceUtente);
+      List<CarichiEntity> carichi = carichiRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
       return mapToCarichiDto(carichi);
     }
   }
 
   public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
-    List<CarichiEntity> carichi = carichiRepository.query1(anno, mese, codiceUtente);
+    List<CarichiEntity> carichi = carichiRepository.queryCarichiMese(anno, mese, codiceUtente);
     return mapToCarichiDto(carichi);
   }
 

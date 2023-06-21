@@ -7,4 +7,6 @@ import it.addvalue.chronos.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
-public interface IUserRepository extends JpaRepository<User, String> {}
+public interface IUserRepository extends JpaRepository<User, String> {
+    sus;
+}

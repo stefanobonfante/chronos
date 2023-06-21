@@ -3,7 +3,9 @@ package it.addvalue.chronos.service;
 import it.addvalue.chronos.core.exception.Custom;
 import it.addvalue.chronos.model.dto.SpeseDto;
 import it.addvalue.chronos.model.entity.SpeseEntity;
+import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.model.mapper.SpesaDtoSpeseEntityMapper;
+import it.addvalue.chronos.repository.IUserRepository;
 import it.addvalue.chronos.repository.SpeseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SpeseService {
@@ -23,6 +26,8 @@ public class SpeseService {
     @Autowired
     protected SpeseRepository repository;
 
+    @Autowired
+    protected IUserRepository userRepository;
     @Autowired
     protected SpesaDtoSpeseEntityMapper mapper;
 
@@ -36,17 +41,21 @@ public class SpeseService {
         return repository.recuperoSpeseMese(anno, mese, codUtente);
     }
 
-    public void deleatElementi(List<SpeseEntity> spese) {
-        for (SpeseEntity spesa : spese) {
-            if (spesa.getMese() == LocalDate.now().getMonthValue()) {
-                repository.RecuperoSpesaDaEliminare(spesa.getIdSpese());
+    public void deleatElementi(List<SpeseDto> spese) throws Custom {
+        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
+        for (SpeseDto spesa : spese) {
+            if (spesa.getMese() == LocalDate.now().getMonthValue() && user.get().get(0).getLevel() <= 3) {
+                userRepository.deleteById(spesa.getIdSpese());
+            }
+            else {
+                throw new Custom("could not cancel");
             }
         }
     }
 
     public void filtroSpese(List<SpeseDto> spese) throws Custom {
         for (SpeseDto spesa : spese) {
-            if (repository.existsById((spesa.getIdSpese()))) {
+            if (repository.existsById(spesa.getIdSpese())) {
                 modificaSpese(spesa);
             } else {
                 salvataggioSpese(spesa);
@@ -57,11 +66,10 @@ public class SpeseService {
     public void salvataggioSpese(SpeseDto spesa) throws Custom {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
-
+        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
         flag = false;
-        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("")) {
-
-            for (SpeseEntity elemento : repository.findAll()) {
+        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && user.get().get(0).getLevel() <= 3) {
+            for (String elemento : repository.recuperaJob()) {
                 if (elemento.equals(spesa.getCodJob())) {
                     flag = true;
                 }
@@ -81,8 +89,9 @@ public class SpeseService {
     public void modificaSpese(SpeseDto spesa) throws Custom {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
+        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
         flag = false;
-        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("")) {
+        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && user.get().get(0).getLevel() <= 3) {
             for (SpeseEntity elemento : repository.findAll()) {
                 if (elemento.equals(spesa.getCodJob())) {
                     flag = true;

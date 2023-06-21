@@ -47,10 +47,9 @@ public class SpeseController {
         service.filtroSpese(spese);
     }
 
-    @DeleteMapping(path = "cancellaSpese")
-    public void cancellaSpese(@RequestBody ArrayList<SpeseEntity> spese) throws Custom{
+    @DeleteMapping(path = "/cancellaSpese")
+    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws Custom {
         service.deleatElementi(spese);
-
     }
 
 }

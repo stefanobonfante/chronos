@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public interface SpeseRepository extends JpaRepository <SpeseEntity,String>{
+public interface SpeseRepository extends JpaRepository<SpeseEntity, String> {
 
     @Query(value = "select * " +
             "from TB_SPESE " +
@@ -19,16 +19,15 @@ public interface SpeseRepository extends JpaRepository <SpeseEntity,String>{
             "order by ANNO asc, MESE asc, GIORNO asc, TB_SPESE.COD_JOB asc", nativeQuery = true)
     ArrayList<SpeseEntity> recuperoSpeseGiorno(int anno, int mese, int giorno, String codUtente);
 
-    @Query(value = "select * "+
-            "from TB_SPESE "+
-            "inner join TB_JOBS on TB_JOBS.COD_JOB=TB_SPESE.COD_JOB "+
-            "where ANNO=?1 and MESE=?2 and COD_UTENTE=?3 "+
+    @Query(value = "select * " +
+            "from TB_SPESE " +
+            "inner join TB_JOBS on TB_JOBS.COD_JOB=TB_SPESE.COD_JOB " +
+            "where ANNO=?1 and MESE=?2 and COD_UTENTE=?3 " +
             "order by ANNO asc, MESE asc, GIORNO asc, COD_JOB asc", nativeQuery = true)
     ArrayList<SpeseEntity> recuperoSpeseMese(int anno, int mese, String codUtente);
 
 
-    @Query(value = "DELETE FROM TB_SPESE"+
-                    " where ID_SPESE=?1", nativeQuery = true)
-    int RecuperoSpesaDaEliminare(String speseId);
+    @Query(value = "select COD_JOB from TB_CARICHI", nativeQuery = true)
+    ArrayList<String> recuperaJob();
 
 }

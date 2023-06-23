@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_DEST_VIAGGIO")
 public class DestinazioniEntity {
+    @Id
     @Column(name = "COD_DESTINAZIONE")
     private String codDestinazione;
     @Column(name = "DES_DESTINAZIONI")

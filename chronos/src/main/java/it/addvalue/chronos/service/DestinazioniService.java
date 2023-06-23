@@ -3,10 +3,8 @@ package it.addvalue.chronos.service;
 import it.addvalue.chronos.core.exception.Custom;
 import it.addvalue.chronos.model.dto.DestinazioniDto;
 import it.addvalue.chronos.model.entity.DestinazioniEntity;
-import it.addvalue.chronos.model.entity.SpeseEntity;
-import it.addvalue.chronos.model.mapper.SpesaDtoSpeseEntityMapper;
+import it.addvalue.chronos.model.mapper.DestinazioniDtoDestinazioniEntityMapper;
 import it.addvalue.chronos.repository.DestinazioniRepository;
-import it.addvalue.chronos.repository.SpeseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ public class DestinazioniService {
     @Autowired
     protected DestinazioniRepository repository;
     @Autowired
-    protected DestinazioniDto mapper;
+    protected DestinazioniDtoDestinazioniEntityMapper mapper;
 
     public ArrayList<DestinazioniEntity> recuperoDestinazioni() {
         return repository.recuperoDestinazioni();

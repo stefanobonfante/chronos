@@ -1,6 +1,5 @@
 package it.addvalue.chronos.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,16 +64,16 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
     repository.delete(model);
   }
 
-  public List<UserDto>getListaUtenti(User user) throws EsecuzioneErrataException {
-    Optional<User> utente=repository.findById(user.getUserCode());
-    if(utente.isPresent()){
-     int livello= utente.get().getLevel();
-     if (livello > 5) {
-          return mapper.toDtos(repository.QuerylistaUtentiAuth(user.getUserCode()));
-      }else {
-          return mapper.toDtos(repository.QuerylistaUtentiNoAuth());
-     }
-    }else{
+  public List<UserDto> getListaUtenti(User user) throws EsecuzioneErrataException {
+    Optional<User> utente = repository.findById(user.getUserCode());
+    if (utente.isPresent()) {
+      int livello = utente.get().getLevel();
+      if (livello > 5) {
+        return mapper.toDtos(repository.QuerylistaUtentiAuth(user.getUserCode()));
+      } else {
+        return mapper.toDtos(repository.QuerylistaUtentiNoAuth());
+      }
+    } else {
       throw new EsecuzioneErrataException("utente non trovato");
     }
   }

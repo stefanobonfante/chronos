@@ -50,7 +50,7 @@ public class CarichiController {
   }
 
   @GetMapping("/stato-mesi/verifica-stato")
-  public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente){
+  public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente) {
     return servizio.getStatoMese(anno, mese, codiceUtente, statoMese);
   }
   // metodo per eliminare nel controller

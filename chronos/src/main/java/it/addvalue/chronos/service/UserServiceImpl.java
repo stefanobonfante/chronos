@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
 import it.addvalue.chronos.model.dto.UserDto;
+import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.model.mapper.UserDtoEntityMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +47,7 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
   }
 
   @Override
-  public it.addvalue.chronos.model.entity. update(User model) {
+  public User update(User model) {
     logger.debug(
         "The method update has been invoked for the table {}, with parameter model = {}",
         TABLE_NAME,
@@ -63,14 +64,14 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
     repository.delete(model);
   }
 
-  public List<UserDto> getListaUtenti(User user) throws EsecuzioneErrataException {
-    Optional<User> utente = repository.findById(user.getUserCode());
+  public List<UserDto> getListaUtenti(String user) throws EsecuzioneErrataException {
+    Optional<User> utente = repository.findById(user);
     if (utente.isPresent()) {
       int livello = utente.get().getLevel();
       if (livello > 5) {
-        return mapper.toDtos(repository.ciao1(user.getUserCode()));
+        return mapper.toDtos(repository.ordinaUsersConAuth(user));
       } else {
-        return mapper.toDtos(repository.ciao2());
+        return mapper.toDtos(repository.ordinaUsers());
       }
     } else {
       throw new EsecuzioneErrataException("utente non trovato");

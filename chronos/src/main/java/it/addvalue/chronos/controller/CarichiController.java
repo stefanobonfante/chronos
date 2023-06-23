@@ -19,11 +19,10 @@ public class CarichiController {
 
   @GetMapping("/carichi/{year}/{month}/{day}/{usercode}")
   public ResponseEntity<List<carichiDTO>> carichi(
-      @RequestParam(name = "year", required = true, defaultValue = "yearNotSpecified") int year,
-      @RequestParam(name = "month", required = true, defaultValue = "monthNotSpecified") int month,
-      @RequestParam(name = "day", required = false, defaultValue = "dayNotSpecified") Integer day,
-      @RequestParam(name = "usercode", required = true, defaultValue = "usercodeNotSpecified")
-          String usercode)
+      @RequestParam(name = "year", required = true) int year,
+      @RequestParam(name = "month", required = true) int month,
+      @RequestParam(name = "day", required = false ) Integer day,
+      @RequestParam(name = "usercode", required = true) String usercode)
       throws EsecuzioneErrataException {
     return ResponseEntity.ok(servizio.getElencoCarichiGiorno(year, month, day, usercode));
   }

@@ -44,7 +44,7 @@ public class CarichiService {
     List<CarichiEntity> carichiEntities = mapToCarichiEntity(carichiDtoList);
     for (CarichiEntity carico : carichiEntities) {
       int auto;
-      Optional<List<User>> utente = this.userRepository.getLivelloUtente(carico.getCodUtente());
+      Optional<List<User>> utente = this.userRepository.findByUserCode(carico.getCodUtente());
       if (utente.isPresent()) {
         auto = utente.get().get(0).getLevel();
       } else {

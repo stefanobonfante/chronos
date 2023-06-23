@@ -1,6 +1,5 @@
 package it.addvalue.chronos.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.repository.IUserRepository;
 
 @Service
@@ -48,7 +46,7 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
   }
 
   @Override
-  public User update(User model) {
+  public it.addvalue.chronos.model.entity. update(User model) {
     logger.debug(
         "The method update has been invoked for the table {}, with parameter model = {}",
         TABLE_NAME,
@@ -65,16 +63,16 @@ public class UserServiceImpl implements ICrudSerice<User, String> {
     repository.delete(model);
   }
 
-  public List<UserDto>getListaUtenti(User user) throws EsecuzioneErrataException {
-    Optional<User> utente=repository.findById(user.getUserCode());
-    if(utente.isPresent()){
-     int livello= utente.get().getLevel();
-     if (livello > 5) {
-          return mapper.toDtos(repository.QuerylistaUtentiAuth(user.getUserCode()));
-      }else {
-          return mapper.toDtos(repository.QuerylistaUtentiNoAuth());
-     }
-    }else{
+  public List<UserDto> getListaUtenti(User user) throws EsecuzioneErrataException {
+    Optional<User> utente = repository.findById(user.getUserCode());
+    if (utente.isPresent()) {
+      int livello = utente.get().getLevel();
+      if (livello > 5) {
+        return mapper.toDtos(repository.ciao1(user.getUserCode()));
+      } else {
+        return mapper.toDtos(repository.ciao2());
+      }
+    } else {
       throw new EsecuzioneErrataException("utente non trovato");
     }
   }

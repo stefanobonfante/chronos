@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TB_UTENTI")
 public class User {
-  @Id
-  @Column(name = "COD_UTENTE")
-  private String userCode;
+    @Id
+    @Column(name = "COD_UTENTE")
+    private String userCode;
 
-  @Column(name = "NOME")
-  private String name;
+    @Column(name = "NOME")
+    private String name;
 
-  @Column(name = "COGNOME")
-  private String surname;
+    @Column(name = "COGNOME")
+    private String surname;
 
-  @Column(name = "LIVELLO")
-  private int level;
+    @Column(name = "LIVELLO")
+    private int level;
 }

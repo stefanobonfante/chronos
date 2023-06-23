@@ -4,7 +4,6 @@ import it.addvalue.chronos.model.dto.carichiDTO;
 import it.addvalue.chronos.model.entity.CarichiEntity;
 import org.springframework.stereotype.Component;
 
-
 import java.util.List;
 
 @Component

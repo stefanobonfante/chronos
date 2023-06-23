@@ -16,10 +16,11 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class UserController {
-    @Autowired private final UserServiceImpl service;
+  @Autowired private final UserServiceImpl service;
 
-    @GetMapping(path = "/api/users/attivi")
-    public ResponseEntity<List<UserDto>> getListaUtenti(@RequestBody  User autenitcato) throws EsecuzioneErrataException {
-        return ResponseEntity.ok(service.getListaUtenti(autenitcato));
-    }
+  @GetMapping(path = "/api/users/attivi")
+  public ResponseEntity<List<UserDto>> getListaUtenti(@RequestBody User autenitcato)
+      throws EsecuzioneErrataException {
+    return ResponseEntity.ok(service.getListaUtenti(autenitcato));
+  }
 }

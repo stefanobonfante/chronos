@@ -4,6 +4,7 @@ import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
 import it.addvalue.chronos.model.dto.carichiDTO;
 import it.addvalue.chronos.model.entity.CarichiEntity;
 import it.addvalue.chronos.model.entity.User;
+import it.addvalue.chronos.model.mapper.CarichiDTOEntityMapper;
 import it.addvalue.chronos.repository.CarichiRepository;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -18,15 +19,10 @@ import java.util.Optional;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class CarichiService {
-    private final CarichiRepository caricoRepository;
-    private CarichiDTOEntityMapper caricoEM;
-
-            }
-        }
-
+    @Autowired private CarichiRepository caricoRepository;
+    @Autowired private CarichiDTOEntityMapper caricoEM;
 
     @Autowired
     public CarichiService(CarichiRepository caricoRepository, CarichiDTOEntityMapper caricoEM) {

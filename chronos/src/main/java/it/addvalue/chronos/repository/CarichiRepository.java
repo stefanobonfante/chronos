@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public interface CarichiRepository extends JpaRepository<CarichiEntity, String> {
+public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer> {
 
   @Query(
       value =

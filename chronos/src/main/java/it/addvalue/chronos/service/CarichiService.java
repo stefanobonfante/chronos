@@ -33,20 +33,20 @@ public class CarichiService {
         List<CarichiEntity> lce = caricoEM.toEntities(carichiDTO);
         for (CarichiEntity ce : lce) {
             Optional<CarichiEntity> change = caricoRepository.findById(ce.getIdCarico());
-            if(change.isPresent()){
+            if (change.isPresent()) {
                 caricoRepository.save(change.get());
-            }else{
+            } else {
                 throw new EsecuzioneErrataException("Errore: campo null");
+            }
+        }
     }
-    public List<carichiDTO> getElencoCarichiGiorno(
-      int anno, int mese, Integer giorno, String codiceUtente) {
+    public List<carichiDTO> getElencoCarichiGiorno(int anno, int mese, Integer giorno, String codiceUtente) {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
       return getElencoCarichiMese(anno, mese, codiceUtente);
     } else {
       // Recupera i carichi del giorno specificato
-      List<CarichiEntity> carichi =
-          carichiRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
+      List<CarichiEntity> carichi = carichiRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
       return mapToCarichiDto(carichi);
     }
   }

@@ -11,3 +11,9 @@ w
 Gchronos/src/main/java/it/addvalue/chronos/model/RelationalOperator.java,e\4\e4028b444910f1cde4d57fb4bda6cbc7a6c66440
 q
 Achronos/src/main/java/it/addvalue/chronos/ChronosApplication.java,1\5\1556d1eb4d45a4125faf523b42452954c8edd547
+p
+@chronos/src/main/java/it/addvalue/chronos/model/entity/User.java,e\1\e11f6bd3a2bf79bf26de9415d71c5a983031d4b0
+p
+@chronos/src/main/java/it/addvalue/chronos/model/dto/UserDto.java,b\0\b07240fb34fad6804c76c9127a75ecf8bf31667b
+q
+Achronos/src/main/java/it/addvalue/chronos/model/dto/SpeseDto.java,3\7\3771848d0ae459e648a48f9286d422909105094b

@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?")
+    @Query(value = "SELECT COD_UTENTE FROM TB_UTENTI ")
     public Optional<ArrayList<User>> getLivelloUtente();
 }

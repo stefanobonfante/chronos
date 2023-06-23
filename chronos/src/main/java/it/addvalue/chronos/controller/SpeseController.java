@@ -32,7 +32,9 @@ public class SpeseController {
 
     @GetMapping(path = "{anno}/{mese}/{codUtente}")
     public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseMese(
-            @PathVariable int anno, @PathVariable int mese, @PathVariable String codUtente)
+            @PathVariable int anno,
+            @PathVariable int mese,
+            @PathVariable String codUtente)
             throws IOException {
         return ResponseEntity.ok(service.recuperoSpeseMese(anno, mese, codUtente));
     }

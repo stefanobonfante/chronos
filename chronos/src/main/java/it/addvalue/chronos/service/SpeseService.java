@@ -41,7 +41,7 @@ public class SpeseService {
         return repository.recuperoSpeseMese(anno, mese, codUtente);
     }
 
-    public void deleatElementi(List<SpeseDto> spese) throws Custom {
+    public void deleatElementi(ArrayList<SpeseDto> spese) throws Custom {
         Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
         for (SpeseDto spesa : spese) {
             if (spesa.getMese() == LocalDate.now().getMonthValue() && user.get().get(0).getLevel() <= 3) {
@@ -53,7 +53,7 @@ public class SpeseService {
         }
     }
 
-    public void filtroSpese(List<SpeseDto> spese) throws Custom {
+    public void filtroSpese(ArrayList<SpeseDto> spese) throws Custom {
         for (SpeseDto spesa : spese) {
             if (repository.existsById(spesa.getIdSpese())) {
                 modificaSpese(spesa);

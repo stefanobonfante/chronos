@@ -26,16 +26,21 @@ public class CarichiService {
     private CarichiDTOEntityMapper caricoEM;
     @Autowired
     private IUserRepository userRepository;
-    public void modificaElencoCarichi(List<carichiDTO> carichiDTO) throws EsecuzioneErrataException {
+    public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO) throws EsecuzioneErrataException {
         List<CarichiEntity> lce = caricoEM.toEntities(carichiDTO);
         for (CarichiEntity ce : lce) {
             Optional<CarichiEntity> change = caricoRepository.findById(ce.getIdCarico());
             if (change.isPresent()) {
-                caricoRepository.save(change.get());
+                if(isVerificato(change.get())){
+                    caricoRepository.save(change.get());
+                } else {
+                    throw new EsecuzioneErrataException("Errore: campo null");
+                }
             } else {
                 throw new EsecuzioneErrataException("Errore: campo null");
             }
         }
+        return true;
     }
     public List<carichiDTO> getElencoCarichiGiorno(
             int anno, int mese, Integer giorno, String codiceUtente) {

@@ -51,7 +51,11 @@ public class CarichiController {
   public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente) {
     return servizio.getStatoMese(anno, mese, codiceUtente, statoMese);
   }
-  
+
+  @PutMapping
+  public ResponseEntity<Boolean> modificaCarichi(List<carichiDTO> CarichiDTO) throws EsecuzioneErrataException {
+    return ResponseEntity.ok(servizio.modificaElencoCarichi(CarichiDTO));
+  }
   
   @DeleteMapping
   public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)

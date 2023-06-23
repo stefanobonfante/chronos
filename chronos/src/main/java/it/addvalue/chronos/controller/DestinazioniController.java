@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/destinations")
@@ -17,7 +17,7 @@ public class DestinazioniController {
     @Autowired
     DestinazioniService service;
     @GetMapping
-    public ResponseEntity<ArrayList<DestinazioniEntity>> recuperoDestinazioni() throws IOException {
+    public ResponseEntity<List<DestinazioniEntity>> recuperoDestinazioni() throws IOException {
         return ResponseEntity.ok(service.recuperoDestinazioni());
     }
 }

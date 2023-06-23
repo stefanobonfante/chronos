@@ -18,7 +18,7 @@ public class DestinazioniEntity {
     @Id
     @Column(name = "COD_DESTINAZIONE")
     private String codDestinazione;
-    @Column(name = "DES_DESTINAZIONI")
+    @Column(name = "DES_DESTINAZIONE")
     private String desDestinazione;
     @Column(name = "ORE_VIAGGIO")
     private String oreViaggio;

@@ -12,8 +12,5 @@ import java.util.List;
 @Repository
 public interface DestinazioniRepository extends JpaRepository<DestinazioniEntity, String> {
 
-    @Query(value = "select * from TB_DEST_VIAGGIO", nativeQuery = true)
-    ArrayList<DestinazioniEntity> recuperoDestinazioni();
-
 }
 

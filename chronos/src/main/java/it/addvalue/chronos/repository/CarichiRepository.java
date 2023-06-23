@@ -19,8 +19,7 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer>
       nativeQuery = true)
   List<CarichiEntity> queryCarichiGiorno(int anno, int mese, int giorno, String codiceUtente);
   
-  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?",nativeQuery = true)
-  public Optional<ArrayList<User>> getUtente(String cod_utente);
+
 
   @Query(
       value =

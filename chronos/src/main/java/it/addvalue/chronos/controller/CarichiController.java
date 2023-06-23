@@ -42,7 +42,7 @@ public class CarichiController {
   }
 
   @PostMapping
-  public ResponseEntity<Boolean> save(List<carichiDTO> eliminazione)
+  public ResponseEntity<Boolean> save(@RequestBody List<carichiDTO> eliminazione)
     throws EsecuzioneErrataException {
       return ResponseEntity.ok(servizio.salvataggio(eliminazione));
   }

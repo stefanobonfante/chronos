@@ -1,4 +1,4 @@
-package it.addvalue.chronos.model.entity;
+/*package it.addvalue.chronos.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,4 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "TB_JOBS")
 public class JobEntity {
-
-    
-
-}
+}*/

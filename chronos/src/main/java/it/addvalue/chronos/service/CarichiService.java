@@ -8,6 +8,7 @@ import it.addvalue.chronos.repository.CarichiRepository;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import it.addvalue.chronos.repository.IUserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -82,7 +83,7 @@ public class CarichiService {
     }
     public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException {
         List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiToSave);
-        List<CarichiEntity> carichiDaSalvare = null;
+        List<CarichiEntity> carichiDaSalvare = new ArrayList<>();
         int oreTot = 0;
         for (CarichiEntity carico : carichiEntities) {
             if (isVerificato(carico)) {
@@ -92,24 +93,51 @@ public class CarichiService {
                 throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
             }
         }
+
+        if (oreTot <=24){
+            caricoRepository.saveAll(carichiDaSalvare);
+        }
+        else {
+            throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
+        }
         return true;
     }
     private boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
-        Optional<ArrayList<User>> utente = caricoRepository.getUtente(carico.getCodUtente());
+        Optional<List<User>> utente = this.userRepository.findByUserCode(carico.getCodUtente());
         String[] ore = carico.getOraInizioStr().split(":");
+        int livelloUtente=0;
         if (utente.isPresent()) {
-            int livelloUtente = utente.get().get(0).getLevel();
+            livelloUtente = utente.get().get(0).getLevel();
         } else {
             throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
         }
-        if (!(carico.getCodJob().isEmpty() && carico.getCodTask().isEmpty() && carico.getCodSTask().isEmpty() && carico.getCodAttivita().isEmpty()) && carico.getAnno() > 1990 && carico.getMese() >= 1 && carico.getMese() <= 12 && carico.getGiorno() >= 1 && carico.getGiorno() <= 31 && carico.getOre() >= 1 && carico.getOre() <= 24) {
+        if ((carico.getCodJob()!=null
+                && carico.getCodTask()!=null
+                && carico.getCodAttivita()!=null
+        )&&
+        (!carico.getCodJob().isBlank()
+                && !carico.getCodTask().isBlank()
+                && !carico.getCodAttivita().isBlank()
+                && carico.getAnno() > 1990
+                && carico.getMese() >= 1
+                && carico.getMese() <= 12
+                && carico.getGiorno() >= 1
+                && carico.getGiorno() <= 31
+                && carico.getOre() >= 1
+                && carico.getOre() <= 24
+                && livelloUtente<=3)
+    )
+
+        {
             if (carico.getFlgStr().equals("S")) {
                 if (LocalDate.of(carico.getAnno(), carico.getMese(), carico.getGiorno()).getDayOfWeek().getValue() == 6 || LocalDate.of(carico.getAnno(), carico.getMese(), carico.getGiorno()).getDayOfWeek().getValue() == 7) {
+
                     if (Integer.parseInt(ore[0]) <= 0 || Integer.parseInt(ore[0]) >= 24) {
                         throw new EsecuzioneErrataException("ore straordinario errate");
                     }
+
                 } else {
-                    if (Integer.parseInt(ore[0]) > 9 && Integer.parseInt(ore[0]) < 18 || Integer.parseInt(ore[0]) <= 0 && Integer.parseInt(ore[0]) <= 24) {
+                    if (Integer.parseInt(ore[0]) > 9 && Integer.parseInt(ore[0]) < 18 || Integer.parseInt(ore[0]) <=0 && Integer.parseInt(ore[0])<= 24) {
                         throw new EsecuzioneErrataException("ore straordinario errate");
                     }
                 }
@@ -119,6 +147,7 @@ public class CarichiService {
                 }
             }
         }
-        return true;
+        else throw new EsecuzioneErrataException("hai inserito dei campi errati");
+      return true;
     }
 }

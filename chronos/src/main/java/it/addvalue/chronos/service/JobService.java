@@ -22,8 +22,8 @@ public class JobService {
     protected JobStatoRepository statoRepository;
     @Autowired
     protected JobTipoRepository tipoRepository;
-    @Autowired
-    protected JobRepository repository;
+    //@Autowired
+    //protected JobRepository repository;
     @Autowired
     protected JobStatoDtoJobStatoEntityMapper mapper;
 

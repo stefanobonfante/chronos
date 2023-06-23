@@ -48,6 +48,13 @@ public class CarichiController {
     throws EsecuzioneErrataException {
       return ResponseEntity.ok(servizio.salvataggio(eliminazione));
   }
+  
+  @GetMapping("/stato-mesi/verifica-stato")
+  public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente) {
+    return servizio.getStatoMese(anno, mese, codiceUtente, statoMese);
+  }
+  
+  
   @DeleteMapping
   public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)
       throws EsecuzioneErrataException {

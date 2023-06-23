@@ -42,10 +42,10 @@ public class SpeseService {
     }
 
     public void deleatElementi(ArrayList<SpeseDto> spese) throws Custom {
-        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
+        Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
         for (SpeseDto spesa : spese) {
-            if (spesa.getMese() == LocalDate.now().getMonthValue() && user.get().get(0).getLevel() <= 3) {
-                userRepository.deleteById(spesa.getIdSpese());
+            if (spesa.getMese() == LocalDate.now().getMonthValue() && Integer.parseInt(codice_utente.get().get(0)) <= 3) {
+                repository.deleteById(spesa.getIdSpese());
             }
             else {
                 throw new Custom("could not cancel");
@@ -62,13 +62,12 @@ public class SpeseService {
             }
         }
     }
-
     public void salvataggioSpese(SpeseDto spesa) throws Custom {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
-        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
+        Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
         flag = false;
-        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && user.get().get(0).getLevel() <= 3) {
+        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && Integer.parseInt(codice_utente.get().get(0)) <= 3) {
             for (String elemento : repository.recuperaJob()) {
                 if (elemento.equals(spesa.getCodJob())) {
                     flag = true;
@@ -89,9 +88,9 @@ public class SpeseService {
     public void modificaSpese(SpeseDto spesa) throws Custom {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
-        Optional<ArrayList<User>> user = this.userRepository.getLivelloUtente();
+        Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
         flag = false;
-        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && user.get().get(0).getLevel() <= 3) {
+        if (spesa.getMese() == LocalDate.now().getMonthValue() && spesa.getAnno() != 0 && spesa.getMese() != 0 && spesa.getGiorno() != 0 && spesa.getCodUtente() != null && !spesa.getCodUtente().equals("") && spesa.getCodJob() != null && !spesa.getCodJob().equals("") && (Integer.parseInt(codice_utente.get().get(0)) <=3)) {
             for (SpeseEntity elemento : repository.findAll()) {
                 if (elemento.equals(spesa.getCodJob())) {
                     flag = true;

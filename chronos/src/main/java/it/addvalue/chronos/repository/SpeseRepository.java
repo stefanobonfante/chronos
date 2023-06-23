@@ -23,7 +23,7 @@ public interface SpeseRepository extends JpaRepository<SpeseEntity, String> {
             "from TB_SPESE " +
             "inner join TB_JOBS on TB_JOBS.COD_JOB=TB_SPESE.COD_JOB " +
             "where ANNO=?1 and MESE=?2 and COD_UTENTE=?3 " +
-            "order by ANNO asc, MESE asc, GIORNO asc, COD_JOB asc", nativeQuery = true)
+            "order by ANNO asc, MESE asc, GIORNO asc, TB_SPESE.COD_JOB asc", nativeQuery = true)
     ArrayList<SpeseEntity> recuperoSpeseMese(int anno, int mese, String codUtente);
 
 

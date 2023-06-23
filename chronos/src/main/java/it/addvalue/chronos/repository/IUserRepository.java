@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT COD_UTENTE FROM TB_UTENTI ")
-    public Optional<ArrayList<User>> getLivelloUtente();
+    @Query(value = "SELECT LIVELLO FROM TB_UTENTI ",nativeQuery = true)
+    public Optional<ArrayList<String>> getLivelloUtente();
 }

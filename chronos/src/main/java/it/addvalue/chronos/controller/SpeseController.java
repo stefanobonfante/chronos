@@ -50,7 +50,7 @@ public class SpeseController {
     }
 
     @DeleteMapping(path = "/cancellaSpese")
-    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws Custom {
+    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws IOException, Custom {
         service.deleatElementi(spese);
     }
 

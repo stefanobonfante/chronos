@@ -5,8 +5,9 @@ import it.addvalue.chronos.model.dto.carichiDTO;
 import it.addvalue.chronos.model.entity.CarichiEntity;
 import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.repository.CarichiRepository;
-import it.addvalue.chronos.repository.IUserRepository;
+import lombok.Setter;
 import lombok.AllArgsConstructor;
+import it.addvalue.chronos.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +15,34 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class CarichiService {
+    private final CarichiRepository caricoRepository;
+    private CarichiDTOEntityMapper caricoEM;
 
-  @Autowired private IUserRepository userRepository;
-  @Autowired private CarichiRepository carichiRepository;
+            }
+        }
 
-  public List<carichiDTO> getElencoCarichiGiorno(
+
+    @Autowired
+    public CarichiService(CarichiRepository caricoRepository, CarichiDTOEntityMapper caricoEM) {
+        this.caricoRepository = caricoRepository;
+        this.caricoEM = caricoEM;
+    }
+    public void modificaElencoCarichi(List<carichiDTO> carichiDTO) throws EsecuzioneErrataException {
+        List<CarichiEntity> lce = caricoEM.toEntities(carichiDTO);
+        for (CarichiEntity ce : lce) {
+            Optional<CarichiEntity> change = caricoRepository.findById(ce.getIdCarico());
+            if(change.isPresent()){
+                caricoRepository.save(change.get());
+            }else{
+                throw new EsecuzioneErrataException("Errore: campo null");
+    }
+    public List<carichiDTO> getElencoCarichiGiorno(
       int anno, int mese, Integer giorno, String codiceUtente) {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
@@ -78,86 +97,10 @@ public class CarichiService {
             } else {
                 throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
             }
-        }
-        if (oreTot <=24){
-            carichiRepository.saveAll(carichiDaSalvare);
-        }
-        else {
-            throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
+            
         }
         return true;
     }
 
-    private boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
-        Optional<ArrayList<User>> utente = this.carichiRepository.getUtente(carico.getCodUtente());
-        String[] ore = carico.getOraInizioStr().split(":");
-        if (utente.isPresent()) {
-            int livelloUtente = utente.get().get(0).getLevel();
-        } else {
-            throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
-        }
-
-        if (!(carico.getCodJob().isEmpty()
-                && carico.getCodTask().isEmpty()
-                && carico.getCodSTask().isEmpty()
-                && carico.getCodAttivita().isEmpty())
-                && carico.getAnno() > 1990
-                && carico.getMese() >= 1
-                && carico.getMese() <= 12
-                && carico.getGiorno() >= 1
-                && carico.getGiorno() <= 31
-                && carico.getOre() >= 1
-                && carico.getOre() <= 24) {
-            if (carico.getFlgStr().equals("S")) {
-                if (LocalDate.of(carico.getAnno(), carico.getMese(), carico.getGiorno()).getDayOfWeek().getValue() == 6 || LocalDate.of(carico.getAnno(), carico.getMese(), carico.getGiorno()).getDayOfWeek().getValue() == 7) {
-
-                    if (Integer.parseInt(ore[0]) <= 0 || Integer.parseInt(ore[0]) >= 24) {
-                        throw new EsecuzioneErrataException("ore straordinario errate");
-                    }
-
-                } else {
-                    if (Integer.parseInt(ore[0]) > 9 && Integer.parseInt(ore[0]) < 18 || Integer.parseInt(ore[0]) <=0 && Integer.parseInt(ore[0])<= 24) {
-                        throw new EsecuzioneErrataException("ore straordinario errate");
-                    }
-                }
-            } else if (carico.getFlgStr().equals("N")) {
-                if (Integer.parseInt(ore[0]) <= 0 || Integer.parseInt(ore[0]) >= 24) {
-                    throw new EsecuzioneErrataException("ore errate");
-                }
-            }
-        }
-        return true;
-    }
-
-    private List<carichiDTO> mapToCarichiDto(List<CarichiEntity> carichiEntities) {
-        return carichiEntities.stream().map(this::mapToCaricoDto).collect(Collectors.toList());
-    }
-
-  private carichiDTO mapToCaricoDto(CarichiEntity carichiEntity) {
-    carichiDTO dto = new carichiDTO();
-    dto.setIdCarico(carichiEntity.getIdCarico());
-    dto.setAnno(carichiEntity.getAnno());
-    dto.setMese(carichiEntity.getMese());
-    dto.setGiorno(carichiEntity.getGiorno());
-    dto.setCodUtente(carichiEntity.getCodUtente());
-    dto.setCodJob(carichiEntity.getCodJob());
-    // Mappa altri campi...
-    return dto;
-  }
-
-  private List<CarichiEntity> mapToCarichiEntity(List<carichiDTO> carichiDtoList) {
-    return carichiDtoList.stream().map(this::mapToCaricoEntity).collect(Collectors.toList());
-  }
-
-  private CarichiEntity mapToCaricoEntity(carichiDTO carichiDTO) {
-    CarichiEntity entity = new CarichiEntity();
-    entity.setIdCarico(carichiDTO.getIdCarico());
-    entity.setAnno(carichiDTO.getAnno());
-    entity.setMese(carichiDTO.getMese());
-    entity.setGiorno(carichiDTO.getGiorno());
-    entity.setCodUtente(carichiDTO.getCodUtente());
-    entity.setCodJob(carichiDTO.getCodJob());
-    // Mappa altri campi...
-    return entity;
-  }
+    public boolean isValido()
 }

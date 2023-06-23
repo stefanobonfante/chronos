@@ -32,4 +32,11 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, String> 
   
   @Query(value = "SELECT * TB_CARICHI WHERE IdCarico=?",nativeQuery = true)
   public Optional<CarichiEntity> getFromTbcarichi(String id);
+
+  @Query(
+      value =
+          "SELECT * FROM TB_STATO_MESI "
+              + "WHERE ANNO=?1 AND MESE=?2 AND COD_UTENTE=?3 AND CHIUSO=?4", nativeQuery = true)
+  List<CarichiEntity> queryStatoMese(int anno, int mese, String codiceUtente, String chiuso);
+
 }

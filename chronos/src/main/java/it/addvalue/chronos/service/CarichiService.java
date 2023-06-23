@@ -37,14 +37,14 @@ public class CarichiService {
   }
 
   public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
-    List<CarichiEntity> carichi = userRepository.queryCarichiMese(anno, mese, codiceUtente);
+    List<CarichiEntity> carichi = carichiRepository.queryCarichiMese(anno, mese, codiceUtente);
     return mapToCarichiDto(carichi);
   }
 
   // parte 4.1.1
   public boolean getStatoMese(int anno, int mese, String codiceUtente, String stato) {
     List<CarichiEntity> statoMeseList =
-        userRepository.queryStatoMese(anno, mese, codiceUtente, stato);
+        carichiRepository.queryStatoMese(anno, mese, codiceUtente, stato);
     return !statoMeseList.isEmpty();
   }
 
@@ -67,9 +67,6 @@ public class CarichiService {
     return true;
   }
 
-  private List<carichiDTO> mapToCarichiDto(List<CarichiEntity> carichiEntities) {
-    return carichiEntities.stream().map(this::mapToCaricoDto).collect(Collectors.toList());
-  }
     public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException {
         List<CarichiEntity> carichiEntities = mapToCarichiEntity(carichiToSave);
         List<CarichiEntity> carichiDaSalvare = null;

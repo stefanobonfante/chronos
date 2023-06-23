@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/mesi")
 public class GestioneMesiController {
   private CarichiService carichiService; // Riferimento al service per il recupero dei carichi
 
-  @GetMapping("/carichi")
+  @GetMapping("/elenco")
   public List<carichiDTO> getElencoCarichi(
       @RequestParam("anno") int anno,
       @RequestParam("mese") int mese,

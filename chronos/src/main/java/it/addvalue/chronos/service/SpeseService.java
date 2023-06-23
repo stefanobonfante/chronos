@@ -3,7 +3,6 @@ package it.addvalue.chronos.service;
 import it.addvalue.chronos.core.exception.Custom;
 import it.addvalue.chronos.model.dto.SpeseDto;
 import it.addvalue.chronos.model.entity.SpeseEntity;
-import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.model.mapper.SpesaDtoSpeseEntityMapper;
 import it.addvalue.chronos.repository.IUserRepository;
 import it.addvalue.chronos.repository.SpeseRepository;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service

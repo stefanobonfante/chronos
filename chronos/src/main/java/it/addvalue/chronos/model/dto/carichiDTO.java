@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class carichiDTO {
 
-  private String IdCarico;
+  private int IdCarico;
 
   private String codUtente;
 

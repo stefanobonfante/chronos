@@ -4,7 +4,6 @@ it\addvalue\chronos\core\config\SpringFoxConfig.class
 it\addvalue\chronos\model\RelationalOperator.class
 it\addvalue\chronos\controller\ExampleController.class
 it\addvalue\chronos\controller\CarichiController.class
-it\addvalue\chronos\controller\CarichiController$GestioneMesiController.class
 it\addvalue\chronos\service\UserServiceImpl.class
 it\addvalue\chronos\model\dto\carichiDTO.class
 it\addvalue\chronos\utils\UserUtils.class
@@ -14,8 +13,10 @@ it\addvalue\chronos\model\dto\UserDto.class
 it\addvalue\chronos\ChronosApplication.class
 it\addvalue\chronos\model\mapper\IDtoEntityBidirectionalMapper.class
 it\addvalue\chronos\model\mapper\UserDtoEntityMapper.class
+it\addvalue\chronos\controller\UserController.class
 it\addvalue\chronos\service\ICrudSerice.class
 it\addvalue\chronos\repository\CarichiRepository.class
+it\addvalue\chronos\controller\GestioneMesiController.class
 it\addvalue\chronos\core\config\ChronosApplicationConfig.class
 it\addvalue\chronos\model\mapper\CarichiDTOEntityMapper.class
 it\addvalue\chronos\core\exception\RestResponseEntityExceptionHandler.class

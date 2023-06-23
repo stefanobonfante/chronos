@@ -15,7 +15,7 @@ public class CarichiEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private String IdCarico;
+  private int IdCarico;
 
   @Column(name = "COD_UTENTE")
   private String codUtente;

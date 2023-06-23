@@ -12,28 +12,22 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/carichi")
+@RequestMapping("/api")
 public class CarichiController {
 
   @Autowired CarichiService servizio;
 
-  @GetMapping("/{year}/{month}/{day}/{usercode}")
-  public CarichiService carichi(
-      @RequestParam(name = "year", required = true, defaultValue = "yearNotSpecified") int year,
-      @RequestParam(name = "month", required = true, defaultValue = "monthNotSpecified") int month,
-      @RequestParam(name = "day", required = false, defaultValue = "dayNotSpecified") Integer day,
-      @RequestParam(name = "usercode", required = true, defaultValue = "usercodeNotSpecified")
-          String usercode)
-      throws EsecuzioneErrataException {
-    servizio.getElencoCarichiGiorno(year, month, day, usercode);
-    return servizio;
   }
-
-  // punto 2.1.2
-  @RestController
-  @RequestMapping("/api")
-  public class GestioneMesiController {
-    private CarichiService carichiService; // Riferimento al service per il recupero dei carichi
+  @GetMapping("/carichi/{year}/{month}/{day}/{usercode}")
+  public ResponseEntity<List<carichiDTO>> carichi(
+      @RequestParam(name = "year", required = true) int year,
+      @RequestParam(name = "month", required = true) int month,
+      @RequestParam(name = "day", required = false ) Integer day,
+      @RequestParam(name = "usercode", required = true) String usercode)
+      throws EsecuzioneErrataException {
+    return ResponseEntity.ok(servizio.getElencoCarichiGiorno(year, month, day, usercode));
+  }
+  // metodo per eliminare nel controller
 
     @GetMapping("/carichi")
     public List<carichiDTO> getElencoCarichi(
@@ -49,16 +43,14 @@ public class CarichiController {
     }
   }
 
-  // metodo per eliminare nel controller
-
-  @DeleteMapping
-  public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)
-      throws EsecuzioneErrataException {
-    return ResponseEntity.ok(servizio.delete(eliminazione));
-  }
   @PostMapping
   public ResponseEntity<Boolean> save(List<carichiDTO> eliminazione)
     throws EsecuzioneErrataException {
       return ResponseEntity.ok(servizio.salvataggio(eliminazione));
+  }
+  @DeleteMapping
+  public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)
+      throws EsecuzioneErrataException {
+    return ResponseEntity.ok(servizio.delete(eliminazione));
   }
 }

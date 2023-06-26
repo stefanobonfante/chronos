@@ -22,7 +22,7 @@ public class JobController {
     protected final JobService service;
 
     @GetMapping
-    public ResponseEntity<List<JobDTO>> getJob(@RequestParam String filtroJob, @RequestParam String filtroCodCliente){
+    public ResponseEntity<List<JobDTO>> getJob(String filtroJob, String filtroCodCliente){
         return ResponseEntity.ok(service.checkCod(filtroJob,filtroCodCliente));
     }
 }

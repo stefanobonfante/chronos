@@ -53,7 +53,7 @@ public class CarichiController {
   }
 
   @DeleteMapping
-  public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)
+  public ResponseEntity<Boolean> delete(@RequestBody List<carichiDTO> eliminazione)
       throws EsecuzioneErrataException {
     return ResponseEntity.ok(servizio.delete(eliminazione));
   }

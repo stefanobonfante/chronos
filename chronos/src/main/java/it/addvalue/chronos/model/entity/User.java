@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "TB_UTENTI")
 public class User {
 
+  @Id
   @Column(name = "COD_UTENTE")
   private String userCode;
 

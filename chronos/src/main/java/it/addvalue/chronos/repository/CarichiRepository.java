@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer> {
+public interface CarichiRepository extends JpaRepository<CarichiEntity, String> {
 
   @Query(
       value =
@@ -25,7 +25,7 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer>
       nativeQuery = true)
   List<CarichiEntity> queryCarichiMese(int anno, int mese, String codiceUtente);
 
-  @Query(value = "SELECT * TB_CARICHI WHERE IdCarico=?", nativeQuery = true)
+  @Query(value = "SELECT * TB_CARICHI WHERE IdCarico=?1", nativeQuery = true)
   public Optional<CarichiEntity> getFromTbcarichi(String id);
 
   @Query(

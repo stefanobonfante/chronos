@@ -68,8 +68,8 @@ public class CarichiService {
     Optional<List<User>> utente = Optional.of(new ArrayList<User>());
     for (CarichiEntity carico : carichiEntities) {
       int auto;
-      utente.get().add(userRepository.trovaUser(carico.getCodUtente()));
       if (utente.isPresent()) {
+        utente.get().add(userRepository.trovaUser(carico.getCodUtente()));
         auto = utente.get().get(0).getLevel();
       } else {
         auto = 10;

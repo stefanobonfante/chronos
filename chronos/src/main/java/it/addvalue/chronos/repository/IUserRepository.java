@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?1", nativeQuery = true)
+  @Query(value = "SELECT COD_UTENTE,NOME,COGNOME,LIVELLO FROM TB_UTENTI WHERE COD_UTENTE=?1", nativeQuery = true)
   User trovaUser(String userCode);
 
   @Query(

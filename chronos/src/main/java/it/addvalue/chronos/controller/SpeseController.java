@@ -15,42 +15,40 @@ import java.util.ArrayList;
 @RequestMapping("/api/spese/")
 public class SpeseController {
 
+  @Autowired SpeseService service;
 
-    @Autowired
-    SpeseService service;
+  @GetMapping(path = "{anno}/{mese}/{giorno}/{codUtente}")
+  public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseGiorno(
+      @PathVariable int anno,
+      @PathVariable int mese,
+      @PathVariable int giorno,
+      @PathVariable String codUtente)
+      throws IOException {
+    return ResponseEntity.ok(service.recuperoSpeseGiorno(anno, mese, giorno, codUtente));
+  }
 
-    @GetMapping(path = "{anno}/{mese}/{giorno}/{codUtente}")
-    public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseGiorno(
-            @PathVariable int anno,
-            @PathVariable int mese,
-            @PathVariable int giorno,
-            @PathVariable String codUtente)
-            throws IOException {
-        return ResponseEntity.ok(service.recuperoSpeseGiorno(anno, mese, giorno, codUtente));
-    }
+  @GetMapping(path = "{anno}/{mese}/{codUtente}")
+  public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseMese(
+      @PathVariable int anno, @PathVariable int mese, @PathVariable String codUtente)
+      throws IOException {
+    return ResponseEntity.ok(service.recuperoSpeseMese(anno, mese, codUtente));
+  }
 
-    @GetMapping(path = "{anno}/{mese}/{codUtente}")
-    public ResponseEntity<ArrayList<SpeseEntity>> recuperoSpeseMese(
-            @PathVariable int anno,
-            @PathVariable int mese,
-            @PathVariable String codUtente)
-            throws IOException {
-        return ResponseEntity.ok(service.recuperoSpeseMese(anno, mese, codUtente));
-    }
+  @PostMapping
+  public void salvataggioSpese(@RequestBody ArrayList<SpeseDto> spese)
+      throws IOException, CustomException {
+    service.filtroSpese(spese);
+  }
 
-    @PostMapping
-    public void salvataggioSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, CustomException {
-        service.filtroSpese(spese);
-    }
+  @PutMapping
+  public void modificaSpese(@RequestBody ArrayList<SpeseDto> spese)
+      throws IOException, CustomException {
+    service.filtroSpese(spese);
+  }
 
-    @PutMapping
-    public void modificaSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, CustomException {
-        service.filtroSpese(spese);
-    }
-
-    @DeleteMapping(path = "/cancellaSpese")
-    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws IOException, CustomException {
-        service.deleatElementi(spese);
-    }
-
+  @DeleteMapping(path = "/cancellaSpese")
+  public void cancellaSpese(@RequestBody ArrayList<SpeseDto> spese)
+      throws IOException, CustomException {
+    service.deleatElementi(spese);
+  }
 }

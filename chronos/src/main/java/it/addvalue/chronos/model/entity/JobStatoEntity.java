@@ -15,9 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_STATO_JOB")
 public class JobStatoEntity {
-    @Id
-    @Column(name = "COD_STATO_JOB")
-    private String codStatoJob;
-    @Column(name = "DES_STATO_JOB")
-    private String desStatoJob;
+  @Id
+  @Column(name = "COD_STATO_JOB")
+  private String codStatoJob;
+
+  @Column(name = "DES_STATO_JOB")
+  private String desStatoJob;
 }

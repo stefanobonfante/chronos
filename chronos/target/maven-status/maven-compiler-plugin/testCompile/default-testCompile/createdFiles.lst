@@ -1,8 +1,0 @@
-it\addvalue\chronos\repository\UserRepositoryTests.class
-it\addvalue\chronos\core\controller\SwaggerControllerTests.class
-it\addvalue\chronos\core\exception\RestResponseEntityExceptionHandlerTests$TestController.class
-it\addvalue\chronos\core\exception\RestResponseEntityExceptionHandlerTests.class
-it\addvalue\chronos\service\UserServiceImplTests.class
-it\addvalue\chronos\utils\UserUtilsTests.class
-it\addvalue\chronos\model\mapper\UserDtoEntityMapperTests.class
-it\addvalue\chronos\ChronosApplicationTests.class

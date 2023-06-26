@@ -12,15 +12,13 @@ import java.util.List;
 
 @Service
 public class DestinazioniService {
-    private static final String TABLE_NAME = "TB_DEST_VIAGGIO";
-    protected static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+  private static final String TABLE_NAME = "TB_DEST_VIAGGIO";
+  protected static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
-    protected DestinazioniRepository repository;
-    @Autowired
-    protected DestinazioniDtoDestinazioniEntityMapper mapper;
+  @Autowired protected DestinazioniRepository repository;
+  @Autowired protected DestinazioniDtoDestinazioniEntityMapper mapper;
 
-    public List<DestinazioniEntity> recuperoDestinazioni() {
-        return repository.findAll();
-    }
+  public List<DestinazioniEntity> recuperoDestinazioni() {
+    return repository.findAll();
+  }
 }

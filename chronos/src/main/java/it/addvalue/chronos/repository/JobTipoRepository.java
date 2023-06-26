@@ -10,8 +10,8 @@ import java.util.ArrayList;
 @Repository
 public interface JobTipoRepository extends JpaRepository<JobTipoEntity, String> {
 
-    @Query(value = "select * from TB_TIPO_JOB where COD_TIPO_JOB <> '' order by COD_TIPO_JOB asc;", nativeQuery = true)
-    ArrayList<JobTipoEntity> recuperoTipoJob();
-
+  @Query(
+      value = "select * from TB_TIPO_JOB where COD_TIPO_JOB <> '' order by COD_TIPO_JOB asc;",
+      nativeQuery = true)
+  ArrayList<JobTipoEntity> recuperoTipoJob();
 }
-

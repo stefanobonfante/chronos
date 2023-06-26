@@ -13,61 +13,61 @@ import javax.persistence.*;
 @Table(name = "TB_CARICHI")
 public class CarichiEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private String IdCarico;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private String IdCarico;
 
-    @Column(name = "COD_UTENTE")
-    private String codUtente;
+  @Column(name = "COD_UTENTE")
+  private String codUtente;
 
-    @Column(name = "ANNO")
-    private int anno;
+  @Column(name = "ANNO")
+  private int anno;
 
-    @Column(name = "MESE")
-    private int mese;
+  @Column(name = "MESE")
+  private int mese;
 
-    @Column(name = "GIORNO")
-    private int giorno;
+  @Column(name = "GIORNO")
+  private int giorno;
 
-    @Column(name = "COD_JOB")
-    private String codJob;
+  @Column(name = "COD_JOB")
+  private String codJob;
 
-    @Column(name = "COD_TASK")
-    private String codTask;
+  @Column(name = "COD_TASK")
+  private String codTask;
 
-    @Column(name = "COD_SUBTASK")
-    private String codSTask;
+  @Column(name = "COD_SUBTASK")
+  private String codSTask;
 
-    @Column(name = "COD_SUBSUBTASK")
-    private String codSSTask;
+  @Column(name = "COD_SUBSUBTASK")
+  private String codSSTask;
 
-    @Column(name = "COD_ATTIVITA")
-    private String codAttivita;
+  @Column(name = "COD_ATTIVITA")
+  private String codAttivita;
 
-    @Column(name = "ORA_INIZIO_STRAO")
-    private String oraInizioStr;
+  @Column(name = "ORA_INIZIO_STRAO")
+  private String oraInizioStr;
 
-    @Column(name = "FLG_STRAO")
-    private String flgStr;
+  @Column(name = "FLG_STRAO")
+  private String flgStr;
 
-    @Column(name = "ORE")
-    private int ore;
+  @Column(name = "ORE")
+  private int ore;
 
-    @Column(name = "NOTE")
-    private String note;
+  @Column(name = "NOTE")
+  private String note;
 
-    @Column(name = "FLG_CHIUSO")
-    private String flgChiuso;
+  @Column(name = "FLG_CHIUSO")
+  private String flgChiuso;
 
-    @Column(name = "COD_LUOGO_LAV")
-    private String codLgLav;
+  @Column(name = "COD_LUOGO_LAV")
+  private String codLgLav;
 
-    @Column(name = "TMS_ULTIMAMOD")
-    private String ultimaMod;
+  @Column(name = "TMS_ULTIMAMOD")
+  private String ultimaMod;
 
-    @Column(name = "AUTORE_INSERIMENTO")
-    private String autore;
+  @Column(name = "AUTORE_INSERIMENTO")
+  private String autore;
 
-    @Column(name = "FLG_LAVORO_REMOTO")
-    private String flgLavoroRem;
+  @Column(name = "FLG_LAVORO_REMOTO")
+  private String flgLavoroRem;
 }

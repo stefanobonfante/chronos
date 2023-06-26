@@ -14,10 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/destinations")
 public class DestinazioniController {
-    @Autowired
-    DestinazioniService service;
-    @GetMapping
-    public ResponseEntity<List<DestinazioniEntity>> recuperoDestinazioni() throws IOException {
-        return ResponseEntity.ok(service.recuperoDestinazioni());
-    }
+  @Autowired DestinazioniService service;
+
+  @GetMapping
+  public ResponseEntity<List<DestinazioniEntity>> recuperoDestinazioni() throws IOException {
+    return ResponseEntity.ok(service.recuperoDestinazioni());
+  }
 }

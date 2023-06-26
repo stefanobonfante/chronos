@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobTipoDto {
-    private String codTipoJob;
-    private String desTipoJob;
-    private String flgCharts;
-    private String flgChartsBug;
-    private String tipoControllo;
+  private String codTipoJob;
+  private String desTipoJob;
+  private String flgCharts;
+  private String flgChartsBug;
+  private String tipoControllo;
 }

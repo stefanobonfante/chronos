@@ -11,27 +11,27 @@ import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-    @Query(value = "SELECT LIVELLO FROM TB_UTENTI ",nativeQuery = true)
-    public Optional<ArrayList<String>> getLivelloUtente();
+  @Query(value = "SELECT LIVELLO FROM TB_UTENTI ", nativeQuery = true)
+  public Optional<ArrayList<String>> getLivelloUtente();
 
-    @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?1", nativeQuery = true)
-    public Optional<List<User>> getLivelloUtente1(String cod_utente);
+  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?1", nativeQuery = true)
+  public Optional<List<User>> getLivelloUtente1(String cod_utente);
 
-    @Query(
-            value =
-                    "select * "
-                            + "from TB_UTENTI "
-                            + "where CANCELLATO=”N” and COD_UTENTE=? "
-                            + "order by COD_UTENTE asc, DES_UTENTE asc", nativeQuery = true)
-    public List<User> QuerylistaUtentiAuth(String auth);
+  @Query(
+      value =
+          "select * "
+              + "from TB_UTENTI "
+              + "where CANCELLATO=”N” and COD_UTENTE=? "
+              + "order by COD_UTENTE asc, DES_UTENTE asc",
+      nativeQuery = true)
+  public List<User> QuerylistaUtentiAuth(String auth);
 
-    @Query(
-            value =
-                    "select * "
-                            + "from TB_UTENTI "
-                            + "where CANCELLATO=”N” "
-                            + "order by COD_UTENTE asc, DES_UTENTE asc", nativeQuery = true)
-    public List<User> QuerylistaUtentiNoAuth();
-
-
+  @Query(
+      value =
+          "select * "
+              + "from TB_UTENTI "
+              + "where CANCELLATO=”N” "
+              + "order by COD_UTENTE asc, DES_UTENTE asc",
+      nativeQuery = true)
+  public List<User> QuerylistaUtentiNoAuth();
 }

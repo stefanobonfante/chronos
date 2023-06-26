@@ -9,12 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ClientiRepository extends JpaRepository<ClientiEntity, String> {
-    @Query(
-            value =
-                    "select COD_CLIENTE, RAG_SOCIALE from TB_CLIENTI \n" +
-                            "where COD_CLIENTE <> 'ADV' order by RAG_SOCIALE asc;", nativeQuery = true)
-    List<ClientiEntity> queryRecuperoClienti();
-
-
-
+  @Query(
+      value = "select * from TB_CLIENTI where COD_CLIENTE <> 'ADV' order by RAG_SOCIALE asc",
+      nativeQuery = true)
+  List<ClientiEntity> queryRecuperoClienti();
 }

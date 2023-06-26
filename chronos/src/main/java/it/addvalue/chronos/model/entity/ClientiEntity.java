@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
@@ -14,12 +15,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_CLIENTI")
 public class ClientiEntity {
-    @Column(name = "COD_CLIENTE")
-    private String codCliente;
-    @Column(name = "RAG_SOCIALE")
-    private String ragSociale;
-    @Column(name = "COD_CIMAV")
-    private int codCimav;
-    @Column(name = "COD_CLIENTE_PANT")
-    private String codClientePant;
+  @Id
+  @Column(name = "COD_CLIENTE")
+  private String codCliente;
+
+  @Column(name = "RAG_SOCIALE")
+  private String ragSociale;
+
+  @Column(name = "COD_CIMAV")
+  private Integer codCimav;
+
+  @Column(name = "COD_CLIENTE_PANT")
+  private String codClientePant;
 }

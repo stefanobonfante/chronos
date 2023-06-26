@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class clientiDTO {
-    private String codCliente;
-    private String ragSociale;
-    private String codCimav;
-    private String codClientePant;
-
-
+  private String codCliente;
+  private String ragSociale;
+  private String codCimav;
+  private String codClientePant;
 }

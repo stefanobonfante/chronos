@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobStatoDto {
-    private String codStatoJob;
-    private String desStatoJob;
+  private String codStatoJob;
+  private String desStatoJob;
 }

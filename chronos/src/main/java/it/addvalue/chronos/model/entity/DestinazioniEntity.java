@@ -15,14 +15,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_DEST_VIAGGIO")
 public class DestinazioniEntity {
-    @Id
-    @Column(name = "COD_DESTINAZIONE")
-    private String codDestinazione;
-    @Column(name = "DES_DESTINAZIONE")
-    private String desDestinazione;
-    @Column(name = "ORE_VIAGGIO")
-    private String oreViaggio;
-    @Column(name = "KM_VIAGGIO")
-    private String kmViaggio;
+  @Id
+  @Column(name = "COD_DESTINAZIONE")
+  private String codDestinazione;
 
+  @Column(name = "DES_DESTINAZIONE")
+  private String desDestinazione;
+
+  @Column(name = "ORE_VIAGGIO")
+  private String oreViaggio;
+
+  @Column(name = "KM_VIAGGIO")
+  private String kmViaggio;
 }

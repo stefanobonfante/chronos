@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/api/clienti")
 public class ClientiController {
 
-    @Autowired
-    ClientiService clientiservice;
-    @GetMapping
-    public ResponseEntity<List<clientiDTO>> recuperaClienti() throws IOException {
-        return ResponseEntity.ok(clientiservice.recuperaClienti());
-    }
+  @Autowired ClientiService clientiservice;
+
+  @GetMapping
+  public ResponseEntity<List<clientiDTO>> recuperaClienti() throws IOException {
+    return ResponseEntity.ok(clientiservice.recuperaClienti());
+  }
 }

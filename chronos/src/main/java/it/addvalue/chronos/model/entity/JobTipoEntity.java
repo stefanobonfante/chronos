@@ -12,14 +12,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TB_TIPO_JOB")
 public class JobTipoEntity {
-    @Column(name = "COD_TIPO_JOB")
-    private String codTipoJob;
-    @Column(name = "DES_TIPO_JOB")
-    private String desTipoJob;
-    @Column(name = "FLG_CHARTS")
-    private String flgCharts;
-    @Column(name = "FLG_CHARTS_BUG")
-    private String flgChartsBug;
-    @Column(name = "TIPO_CONTROLLO")
-    private String tipoControllo;
+  @Id
+  @Column(name = "COD_TIPO_JOB")
+  private String codTipoJob;
+
+  @Column(name = "DES_TIPO_JOB")
+  private String desTipoJob;
+
+  @Column(name = "FLG_CHARTS")
+  private String flgCharts;
+
+  @Column(name = "FLG_CHARTS_BUG")
+  private String flgChartsBug;
+
+  @Column(name = "TIPO_CONTROLLO")
+  private String tipoControllo;
 }

@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DestinazioniDto {
-    private String codDestinazione;
-    private String desDestinazione;
-    private String oreViaggio;
-    private String kmViaggio;
+  private String codDestinazione;
+  private String desDestinazione;
+  private String oreViaggio;
+  private String kmViaggio;
 }

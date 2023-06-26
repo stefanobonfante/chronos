@@ -1,8 +1,10 @@
-package it.addvalue.chronos.model.entity;
+package it.addvalue.chronos.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -15,20 +17,20 @@ public class JobDto {
     private String codSocieta;
     private String codCliente;
     private String respJob;
-    private int ggPagamento;
+    private BigDecimal ggPagamento;
     private String protocollo;
     private String jobInterno;
     private String dataInizio;
     private String codStatoJob;
-    private int ggStima;
-    private int ggVenduti;
-    private int tariffa;
-    private int commStima;
-    private int commVendita;
-    private int ggCaricati;
-    private int ggFineStima;
-    private int ggFineVendi;
-    private int speseJob;
+    private BigDecimal ggStima;
+    private BigDecimal ggVenduti;
+    private BigDecimal tariffa;
+    private BigDecimal commStima;
+    private BigDecimal commVendita;
+    private BigDecimal ggCaricati;
+    private BigDecimal ggFineStima;
+    private BigDecimal ggFineVendi;
+    private BigDecimal speseJob;
     private String codTipoJob;
     private String cancellato;
     private String codCCosto;
@@ -39,10 +41,10 @@ public class JobDto {
     private String rifApplCli;
     private String rifBuyerCli;
     private String codStatoProp;
-    private int precAttendib;
+    private BigDecimal precAttendib;
     private String nota;
     private String dataFinePrev;
-    private int speseForfait;
+    private BigDecimal speseForfait;
     private String obbTask;
     private String obbSubtask;
     private String obbSubsubtask;
@@ -50,5 +52,5 @@ public class JobDto {
     private String obbNote;
     private String flgMezzore;
     private String flgBuonopasto;
-    private String flgRieplogo;
+    private String flgRiepilogo;
 }

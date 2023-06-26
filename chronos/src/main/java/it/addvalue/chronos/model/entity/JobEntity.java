@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +32,7 @@ public class JobEntity {
     @Column(name = "RESP_JOB")
     private String respJob;
     @Column(name = "GG_PAGAMENTO")
-    private int ggPagamento;
+    private BigDecimal ggPagamento;
     @Column(name = "PROTOCOLLO")
     private String protocollo;
     @Column(name = "JOB_INTERNO")
@@ -41,23 +42,23 @@ public class JobEntity {
     @Column(name = "COD_STATO_JOB")
     private String codStatoJob;
     @Column(name = "GG_STIMA")
-    private int ggStima;
+    private BigDecimal ggStima;
     @Column(name = "GG_VENDUTI")
-    private int ggVenduti;
+    private BigDecimal ggVenduti;
     @Column(name = "TARIFFA")
-    private int tariffa;
+    private BigDecimal tariffa;
     @Column(name = "COMM_STIMA")
-    private int commStima;
+    private BigDecimal commStima;
     @Column(name = "COMM_VENDITA")
-    private int commVendita;
+    private BigDecimal commVendita;
     @Column(name = "GG_CARICATI")
-    private int ggCaricati;
+    private BigDecimal ggCaricati;
     @Column(name = "GG_FINE_STIMA")
-    private int ggFineStima;
+    private BigDecimal ggFineStima;
     @Column(name = "GG_FINE_VENDI")
-    private int ggFineVendi;
+    private BigDecimal ggFineVendi;
     @Column(name = "SPESE_JOB")
-    private int speseJob;
+    private BigDecimal speseJob;
     @Column(name = "COD_TIPO_JOB")
     private String codTipoJob;
     @Column(name = "CANCELLATO")
@@ -79,13 +80,13 @@ public class JobEntity {
     @Column(name = "COD_STATO_PROP")
     private String codStatoProp;
     @Column(name = "PERC_ATTENDIB")
-    private int precAttendib;
+    private BigDecimal precAttendib;
     @Column(name = "NOTA")
     private String nota;
     @Column(name = "DATA_FINE_PREV")
     private String dataFinePrev;
     @Column(name = "SPESE_FORFAIT")
-    private int speseForfait;
+    private BigDecimal speseForfait;
     @Column(name = "OBB_TASK")
     private String obbTask;
     @Column(name = "OBB_SUBTASK")
@@ -101,5 +102,5 @@ public class JobEntity {
     @Column(name = "FLG_BUONOPASTO")
     private String flgBuonopasto;
     @Column(name = "FLG_RIEPILOGO")
-    private String flgRieplogo;
+    private String flgRiepilogo;
 }

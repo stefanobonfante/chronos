@@ -1,6 +1,6 @@
 package it.addvalue.chronos.service;
 
-import it.addvalue.chronos.core.exception.Custom;
+import it.addvalue.chronos.core.exception.CustomException;
 import it.addvalue.chronos.model.dto.SpeseDto;
 import it.addvalue.chronos.model.entity.SpeseEntity;
 import it.addvalue.chronos.model.mapper.SpesaDtoSpeseEntityMapper;
@@ -39,19 +39,19 @@ public class SpeseService {
         return repository.recuperoSpeseMese(anno, mese, codUtente);
     }
 
-    public void deleatElementi(ArrayList<SpeseDto> spese) throws Custom {
+    public void deleatElementi(ArrayList<SpeseDto> spese) throws CustomException {
         Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
         for (SpeseDto spesa : spese) {
             if (spesa.getMese() == LocalDate.now().getMonthValue() && Integer.parseInt(codice_utente.get().get(0)) <= 3) {
                 repository.deleteById(spesa.getIdSpese());
             }
             else {
-                throw new Custom("could not cancel");
+                throw new CustomException("could not cancel");
             }
         }
     }
 
-    public void filtroSpese(ArrayList<SpeseDto> spese) throws Custom {
+    public void filtroSpese(ArrayList<SpeseDto> spese) throws CustomException {
         for (SpeseDto spesa : spese) {
             if (repository.existsById(spesa.getIdSpese())) {
                 modificaSpese(spesa);
@@ -60,7 +60,7 @@ public class SpeseService {
             }
         }
     }
-    public void salvataggioSpese(SpeseDto spesa) throws Custom {
+    public void salvataggioSpese(SpeseDto spesa) throws CustomException {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
         Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
@@ -79,11 +79,11 @@ public class SpeseService {
             }
             repository.save(mapper.toEntity(spesa));
         } else {
-            throw new Custom("Errore nel salvataggio dela spesa");
+            throw new CustomException("Errore nel salvataggio dela spesa");
         }
     }
 
-    public void modificaSpese(SpeseDto spesa) throws Custom {
+    public void modificaSpese(SpeseDto spesa) throws CustomException {
         logger.debug("The method findAll has been invoked for the table {}", TABLE_NAME);
         boolean flag;
         Optional<ArrayList<String>> codice_utente = this.userRepository.getLivelloUtente();
@@ -105,7 +105,7 @@ public class SpeseService {
 
 
         } else {
-            throw new Custom("Errore nel salvataggio dela spesa");
+            throw new CustomException("Errore nel salvataggio dela spesa");
         }
     }
 

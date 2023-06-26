@@ -1,6 +1,6 @@
 package it.addvalue.chronos.controller;
 
-import it.addvalue.chronos.core.exception.Custom;
+import it.addvalue.chronos.core.exception.CustomException;
 import it.addvalue.chronos.model.dto.SpeseDto;
 import it.addvalue.chronos.model.entity.SpeseEntity;
 import it.addvalue.chronos.service.SpeseService;
@@ -39,17 +39,17 @@ public class SpeseController {
     }
 
     @PostMapping
-    public void salvataggioSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, Custom {
+    public void salvataggioSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, CustomException {
         service.filtroSpese(spese);
     }
 
     @PutMapping
-    public void modificaSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, Custom {
+    public void modificaSpese(@RequestBody ArrayList<SpeseDto> spese) throws IOException, CustomException {
         service.filtroSpese(spese);
     }
 
     @DeleteMapping(path = "/cancellaSpese")
-    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws IOException, Custom {
+    public void cancellaSpese(@RequestBody  ArrayList<SpeseDto> spese) throws IOException, CustomException {
         service.deleatElementi(spese);
     }
 

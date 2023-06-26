@@ -1,7 +1,5 @@
 package it.addvalue.chronos.service;
 
-import it.addvalue.chronos.core.exception.Custom;
-import it.addvalue.chronos.model.dto.DestinazioniDto;
 import it.addvalue.chronos.model.entity.DestinazioniEntity;
 import it.addvalue.chronos.model.mapper.DestinazioniDtoDestinazioniEntityMapper;
 import it.addvalue.chronos.repository.DestinazioniRepository;
@@ -10,11 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DestinazioniService {

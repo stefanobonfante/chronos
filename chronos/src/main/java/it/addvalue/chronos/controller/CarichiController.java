@@ -21,42 +21,43 @@ public class CarichiController {
   public ResponseEntity<List<carichiDTO>> carichi(
       @RequestParam(name = "year", required = true) int year,
       @RequestParam(name = "month", required = true) int month,
-      @RequestParam(name = "day", required = false ) Integer day,
+      @RequestParam(name = "day", required = false) Integer day,
       @RequestParam(name = "usercode", required = true) String usercode)
       throws EsecuzioneErrataException {
     return ResponseEntity.ok(servizio.getElencoCarichiGiorno(year, month, day, usercode));
   }
   // metodo per eliminare nel controller
 
-    @GetMapping()
-    public List<carichiDTO> getElencoCarichi(
-        @RequestParam("anno") int anno,
-        @RequestParam("mese") int mese,
-        @RequestParam("codiceUtente") String codiceUtente,
-        @RequestParam(value = "giorno", required = false) Integer giorno) {
-      if (giorno != null) {
-        return servizio.getElencoCarichiGiorno(anno, mese, giorno, codiceUtente);
-      } else {
-        return servizio.getElencoCarichiMese(anno, mese, codiceUtente);
-      }
+  @GetMapping()
+  public List<carichiDTO> getElencoCarichi(
+      @RequestParam("anno") int anno,
+      @RequestParam("mese") int mese,
+      @RequestParam("codiceUtente") String codiceUtente,
+      @RequestParam(value = "giorno", required = false) Integer giorno) {
+    if (giorno != null) {
+      return servizio.getElencoCarichiGiorno(anno, mese, giorno, codiceUtente);
+    } else {
+      return servizio.getElencoCarichiMese(anno, mese, codiceUtente);
+    }
   }
 
   @PostMapping
   public ResponseEntity<Boolean> save(List<carichiDTO> eliminazione)
-    throws EsecuzioneErrataException {
-      return ResponseEntity.ok(servizio.salvataggio(eliminazione));
+      throws EsecuzioneErrataException {
+    return ResponseEntity.ok(servizio.salvataggio(eliminazione));
   }
-  
+
   @GetMapping("/stato-mesi/verifica-stato")
   public boolean StatoMese(String statoMese, int anno, int mese, String codiceUtente) {
     return servizio.getStatoMese(anno, mese, codiceUtente, statoMese);
   }
 
   @PutMapping
-  public ResponseEntity<Boolean> modificaCarichi(List<carichiDTO> CarichiDTO) throws EsecuzioneErrataException {
+  public ResponseEntity<Boolean> modificaCarichi(List<carichiDTO> CarichiDTO)
+      throws EsecuzioneErrataException {
     return ResponseEntity.ok(servizio.modificaElencoCarichi(CarichiDTO));
   }
-  
+
   @DeleteMapping
   public ResponseEntity<Boolean> delete(List<carichiDTO> eliminazione)
       throws EsecuzioneErrataException {

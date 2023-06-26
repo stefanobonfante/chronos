@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
@@ -31,8 +30,8 @@ public interface IUserRepository extends JpaRepository<User, String> {
   @Query(
       value =
           "select * "
-              + "from TB_UTENTI where CANCELLATO='N' " +
-              "order by COD_UTENTE asc, DES_UTENTE asc",
+              + "from TB_UTENTI where CANCELLATO='N' "
+              + "order by COD_UTENTE asc, DES_UTENTE asc",
       nativeQuery = true)
   List<User> ordinaUsers();
 }

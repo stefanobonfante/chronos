@@ -18,8 +18,8 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer>
               + "order by ANNO asc, MESE asc, GIORNO asc, COD_JOB asc",
       nativeQuery = true)
   List<CarichiEntity> queryCarichiGiorno(int anno, int mese, int giorno, String codiceUtente);
-  
-  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?",nativeQuery = true)
+
+  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?", nativeQuery = true)
   public Optional<ArrayList<User>> getUtente(String cod_utente);
 
   @Query(
@@ -29,14 +29,14 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, Integer>
               + "order by ANNO asc, MESE asc, GIORNO asc, COD_JOB asc",
       nativeQuery = true)
   List<CarichiEntity> queryCarichiMese(int anno, int mese, String codiceUtente);
-  
-  @Query(value = "SELECT * TB_CARICHI WHERE IdCarico=?",nativeQuery = true)
+
+  @Query(value = "SELECT * TB_CARICHI WHERE IdCarico=?", nativeQuery = true)
   public Optional<CarichiEntity> getFromTbcarichi(String id);
 
   @Query(
       value =
           "SELECT * FROM TB_STATO_MESI "
-              + "WHERE ANNO=?1 AND MESE=?2 AND COD_UTENTE=?3 AND CHIUSO=?4", nativeQuery = true)
+              + "WHERE ANNO=?1 AND MESE=?2 AND COD_UTENTE=?3 AND CHIUSO=?4",
+      nativeQuery = true)
   List<CarichiEntity> queryStatoMese(int anno, int mese, String codiceUtente, String chiuso);
-
 }

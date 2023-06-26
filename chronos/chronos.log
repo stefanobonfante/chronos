@@ -1161,3 +1161,31 @@ it.addvalue.chronos.controller.CarichiController#getElencoCarichi(int, int, Stri
 2023-06-23 15:36:56.878  INFO 16460 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-06-23 15:36:57.302  INFO 16460 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/chronos'
 2023-06-23 15:36:57.751  INFO 16460 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Started ChronosApplication in 8.828 seconds (JVM running for 9.891)
+2023-06-26 16:25:00.272  INFO 12080 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Starting ChronosApplication using Java 20.0.1 on DESKTOP-RHFF919 with PID 12080 (C:\Users\User\Desktop\chronos\chronos\target\classes started by User in C:\Users\User\Desktop\chronos\chronos)
+2023-06-26 16:25:00.274 DEBUG 12080 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Running with Spring Boot v2.4.3, Spring v5.3.4
+2023-06-26 16:25:00.274  INFO 12080 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : The following profiles are active: dev
+2023-06-26 16:25:00.359  INFO 12080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-26 16:25:00.359  INFO 12080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-26 16:25:01.876  INFO 12080 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-26 16:25:01.924  INFO 12080 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 42 ms. Found 3 JPA repository interfaces.
+2023-06-26 16:25:02.832  INFO 12080 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-06-26 16:25:02.852  INFO 12080 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-26 16:25:02.852  INFO 12080 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2023-06-26 16:25:02.938  INFO 12080 --- [restartedMain] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring embedded WebApplicationContext
+2023-06-26 16:25:02.938  INFO 12080 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2578 ms
+2023-06-26 16:25:03.399  INFO 12080 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-26 16:25:03.509  INFO 12080 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2023-06-26 16:25:03.706  INFO 12080 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-26 16:25:03.934  INFO 12080 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-26 16:25:04.323  INFO 12080 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-26 16:25:04.341  INFO 12080 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2023-06-26 16:25:05.175  INFO 12080 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-26 16:25:05.184  INFO 12080 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-26 16:25:06.172  WARN 12080 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-26 16:25:06.384  INFO 12080 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-26 16:25:06.552  INFO 12080 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-26 16:25:06.870  INFO 12080 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/chronos'
+2023-06-26 16:25:07.247  INFO 12080 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Started ChronosApplication in 7.581 seconds (JVM running for 8.201)
+2023-06-26 16:29:35.933  INFO 12080 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-26 16:29:35.938  INFO 12080 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-26 16:29:35.941  INFO 12080 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

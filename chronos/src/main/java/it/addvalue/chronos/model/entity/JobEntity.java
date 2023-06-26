@@ -17,7 +17,6 @@ import javax.persistence.Table;
 public class JobEntity {
 
     @Id
-
     @Column(name = "COD_JOB")
     private String codJob;
 

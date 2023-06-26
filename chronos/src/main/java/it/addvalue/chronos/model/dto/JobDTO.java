@@ -10,7 +10,6 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobDTO {
-    
     private String codJob;
 
     private String desJob;

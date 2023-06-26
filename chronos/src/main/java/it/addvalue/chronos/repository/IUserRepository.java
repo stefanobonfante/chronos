@@ -6,18 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Optional;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
-
-  Optional<List<User>> findByUserCode(String userCode);
+  @Query(value = "SELECT * FROM TB_UTENTI WHERE COD_UTENTE=?1", nativeQuery = true)
+  User trovaUser(String userCode);
 
   @Query(
       value =
@@ -31,8 +24,8 @@ public interface IUserRepository extends JpaRepository<User, String> {
   @Query(
       value =
           "select * "
-              + "from TB_UTENTI where CANCELLATO='N' " +
-              "order by COD_UTENTE asc, DES_UTENTE asc",
+              + "from TB_UTENTI where CANCELLATO='N' "
+              + "order by COD_UTENTE asc, DES_UTENTE asc",
       nativeQuery = true)
   List<User> ordinaUsers();
 }

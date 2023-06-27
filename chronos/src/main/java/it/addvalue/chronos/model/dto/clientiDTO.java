@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class clientiDTO {
   private String codCliente;
   private String ragSociale;
-  private String codCimav;
+  private Integer codCimav;
   private String codClientePant;
 }

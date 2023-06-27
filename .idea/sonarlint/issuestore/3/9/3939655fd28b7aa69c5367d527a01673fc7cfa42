@@ -1,0 +1,15 @@
+
+
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Üæ¶¢şÿÿÿÿ8‚Å¯Á1
+
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ŸÙèƒøÿÿÿÿ8…Å¯Á1
+
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ã©°ûÿÿÿÿ8‡Å¯Á1
+ˆ
+java:S1130$"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ñÙó8‰Å¯Á1
+‰
+java:S11301"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¥¨•¢8ŠÅ¯Á1
+X	java:S125*"<This block of commented-out lines of code should be removed.(Ú°à¬8‹Å¯Á1
+]	java:S125-"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8‹Å¯Á1
+‰
+java:S11307"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¥¨•¢8Å¯Á1

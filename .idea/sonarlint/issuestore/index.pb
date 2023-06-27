@@ -1,8 +1,6 @@
 
 ;
 chronos.log,2\f\2f16018601f2415469219578c3f621937c7905d7
-?
-chronos/pom.xml,f\a\fac9516e0c6876bccd9833d1de0d76e9842dcbdb
 ê
 `chronos/src/main/java/it/addvalue/chronos/core/exception/RestResponseEntityExceptionHandler.java,9\0\90a274ef97a88d3b4b2296d10bf547d713365f22
 v
@@ -39,3 +37,17 @@ s
 Cchronos/src/main/java/it/addvalue/chronos/model/dto/JobTipoDto.java,a\1\a1deec8ab7b41c9f7554f4face64d689cde748a9
 q
 Achronos/src/main/java/it/addvalue/chronos/model/dto/SpeseDto.java,3\7\3771848d0ae459e648a48f9286d422909105094b
+y
+Ichronos/src/main/java/it/addvalue/chronos/repository/SpeseRepository.java,a\c\ac86bccb0f1be2cb42ca6277bd2f428b6ec96f1a
+u
+Echronos/src/main/java/it/addvalue/chronos/model/entity/JobEntity.java,9\2\92c5484e1e10d3877cb4d8266129109a5d453a17
+r
+Bchronos/src/main/java/it/addvalue/chronos/service/ICrudSerice.java,c\f\cf77b0b49ae305550e874b8d93f4ed24cca2df23
+}
+Mchronos/src/main/java/it/addvalue/chronos/core/exception/CustomException.java,a\2\a22c66f22f74635ae5dfd001113b1647f6daa845
+o
+?chronos/src/main/java/it/addvalue/chronos/model/dto/JobDto.java,4\9\49069a709fc554ac2cbf7736a31cea5660c0eca5
+y
+Ichronos/src/main/java/it/addvalue/chronos/controller/SpeseController.java,3\4\345d070cbcb888ffc38de521329bbdcb0ecb2af1
+w
+Gchronos/src/main/java/it/addvalue/chronos/controller/JobController.java,3\9\3939655fd28b7aa69c5367d527a01673fc7cfa42

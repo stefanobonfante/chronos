@@ -13,7 +13,7 @@ public class ClientiMapper implements IDtoEntityBidirectionalMapper<clientiDTO, 
     clientiDTO clientiDto = new clientiDTO();
     clientiDto.setCodCliente(clientiEntity.getCodCliente());
     clientiDto.setRagSociale(clientiEntity.getRagSociale());
-    clientiDto.setCodCimav(String.valueOf(clientiEntity.getCodCimav()));
+    clientiDto.setCodCimav(clientiEntity.getCodCimav());
     clientiDto.setCodClientePant(clientiEntity.getCodClientePant());
     return clientiDto;
   }
@@ -30,7 +30,7 @@ public class ClientiMapper implements IDtoEntityBidirectionalMapper<clientiDTO, 
     ClientiEntity clientiEntity = new ClientiEntity();
     clientiEntity.setCodCliente(clientiDto.getCodCliente());
     clientiEntity.setRagSociale(clientiDto.getRagSociale());
-    clientiEntity.setCodCimav(Integer.parseInt(clientiDto.getCodCimav()));
+    clientiEntity.setCodCimav(clientiDto.getCodCimav());
     clientiEntity.setCodClientePant(clientiDto.getCodClientePant());
     return clientiEntity;
   }

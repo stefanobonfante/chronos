@@ -33,7 +33,7 @@ public class CarichiService {
       if (change.isPresent()) {
         caricoRepository.save(caricoAggiornato);
       } else {
-        throw new EsecuzioneErrataException("Errore: campo null");
+        throw new EsecuzioneErrataException("Errore: il carico non esiste nel database");
       }
     }
     return true;
@@ -47,7 +47,8 @@ public class CarichiService {
     } else {
       // Recupera i carichi del giorno specificato
       int giornoEffettivo = Integer.parseInt(giorno);
-      List<CarichiEntity> carichi = caricoRepository.queryCarichiGiorno(anno, mese, giornoEffettivo, codiceUtente);
+      List<CarichiEntity> carichi =
+          caricoRepository.queryCarichiGiorno(anno, mese, giornoEffettivo, codiceUtente);
       return caricoEM.toDtos(carichi);
     }
   }
@@ -67,19 +68,17 @@ public class CarichiService {
 
   public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException {
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiDtoList);
-    Optional<List<User>> utente = Optional.of(new ArrayList<User>());
+    User utente;
+    int auto;
     for (CarichiEntity carico : carichiEntities) {
-      int auto;
-      if (utente.isPresent()) {
-        utente.get().add(userRepository.trovaUser(carico.getCodUtente()));
-        auto = utente.get().get(0).getLevel();
-      } else {
-        auto = 10;
+      if(!caricoRepository.existsById(carico.getIdCarico())){
+        throw new EsecuzioneErrataException("il carico non esiste.");
       }
-      if (carico.getMese() == LocalDate.now().getMonthValue() || auto <= 3) {
+      utente= userRepository.findByUserCode(carico.getCodUtente());
+      if (carico.getMese() == LocalDate.now().getMonthValue() || utente.getLevel() <= 3) {
         caricoRepository.delete(carico);
       } else {
-        throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
+        throw new EsecuzioneErrataException("Impossibile eseguire l'operazione. il mese e terminato o il livello utenete non e adeguato.");
       }
     }
     return true;
@@ -107,7 +106,7 @@ public class CarichiService {
   }
 
   private boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
-    User utente = this.userRepository.trovaUser(carico.getCodUtente());
+    User utente = this.userRepository.findByUserCode(carico.getCodUtente());
     if ((carico.getCodJob() != null
             && carico.getCodTask() != null
             && carico.getCodAttivita() != null)

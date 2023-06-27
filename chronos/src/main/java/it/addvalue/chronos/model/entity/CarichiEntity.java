@@ -13,8 +13,7 @@ import javax.persistence.*;
 @Table(name = "TB_CARICHI")
 public class CarichiEntity {
 
-  @Id
-  private String IdCarico;
+  @Id private String IdCarico;
 
   @Column(name = "COD_UTENTE")
   private String codUtente;

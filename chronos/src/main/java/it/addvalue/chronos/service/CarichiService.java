@@ -25,27 +25,29 @@ public class CarichiService {
   @Autowired private CarichiDTOEntityMapper caricoEM;
   @Autowired private IUserRepository userRepository;
 
-  public void modificaElencoCarichi(List<carichiDTO> carichiDTO) throws EsecuzioneErrataException {
-    List<CarichiEntity> lce = caricoEM.toEntities(carichiDTO);
-    for (CarichiEntity ce : lce) {
-      Optional<CarichiEntity> change = caricoRepository.findById(ce.getIdCarico());
+  public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO)
+      throws EsecuzioneErrataException {
+    List<CarichiEntity> listaCarichi = caricoEM.toEntities(carichiDTO);
+    for (CarichiEntity caricoAggiornato : listaCarichi) {
+      Optional<CarichiEntity> change = caricoRepository.findById(caricoAggiornato.getIdCarico());
       if (change.isPresent()) {
-        caricoRepository.save(change.get());
+        caricoRepository.save(caricoAggiornato);
       } else {
         throw new EsecuzioneErrataException("Errore: campo null");
       }
     }
+    return true;
   }
 
   public List<carichiDTO> getElencoCarichiGiorno(
-      int anno, int mese, Integer giorno, String codiceUtente) {
+      int anno, int mese, String giorno, String codiceUtente) {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
       return getElencoCarichiMese(anno, mese, codiceUtente);
     } else {
       // Recupera i carichi del giorno specificato
-      List<CarichiEntity> carichi =
-          caricoRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
+      int giornoEffettivo = Integer.parseInt(giorno);
+      List<CarichiEntity> carichi = caricoRepository.queryCarichiGiorno(anno, mese, giornoEffettivo, codiceUtente);
       return caricoEM.toDtos(carichi);
     }
   }

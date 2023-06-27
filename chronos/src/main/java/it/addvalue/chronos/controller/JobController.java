@@ -7,4 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/job")
-public class JobController {}
+public class JobController {
+
+}

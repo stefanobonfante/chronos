@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.Assert.assertTrue;
@@ -59,6 +60,20 @@ public class CarichiServiceTest {
         when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s","s","s",99));
 
         assertThatThrownBy(() -> servizio.salvataggio(carichiDTOS)).isInstanceOf(EsecuzioneErrataException.class);
+    }
+
+    @Test
+    public void testModifica() throws EsecuzioneErrataException {
+        List<carichiDTO> carichiDTOS= dammiUnaListaDto();
+        CarichiEntity caricoEntity= dammiUnaListaEntity().get(0);
+        when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+        when(carichiRepository.findById(caricoEntity.getIdCarico())).thenReturn(Optional.of(caricoEntity));
+
+        boolean esito= servizio.modificaElencoCarichi(carichiDTOS);
+        assertTrue(esito);
+        //assertThatThrownBy(() -> servizio.modificaElencoCarichi(carichiDTOS)).isInstanceOf(EsecuzioneErrataException.class);
+
+
     }
 
     public List<carichiDTO> dammiUnaListaDto(){

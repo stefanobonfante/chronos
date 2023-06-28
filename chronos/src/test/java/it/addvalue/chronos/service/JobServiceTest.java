@@ -2,6 +2,7 @@ package it.addvalue.chronos.service;
 
 import it.addvalue.chronos.core.exception.CustomException;
 import it.addvalue.chronos.model.dto.JobDto;
+import it.addvalue.chronos.model.dto.JobStatoDto;
 import it.addvalue.chronos.model.entity.JobEntity;
 import it.addvalue.chronos.model.entity.JobStatoEntity;
 import it.addvalue.chronos.model.entity.JobTipoEntity;
@@ -40,16 +41,30 @@ public class JobServiceTest {
 
   @Test
   public void StatoTest() {
+    JobStatoEntity jobEntity = mapperStatoDto();
     Mockito.when(statoRepository.recuperoStatiJob()).thenReturn(ottieniStatiJob());
-    List<JobStatoEntity> jobStati = statoRepository.recuperoStatiJob();
+    List<JobStatoEntity> result = ottieniStatiJob();
+
     jobService.recuperoStatiJob();
+
+
+
+    Assert.assertNotNull(result);
+    Assert.assertEquals(jobEntity, result.get(0));
   }
 
   @Test
   public void TipoTest() {
+    JobTipoEntity jobEntity = mapperTipoDto();
     Mockito.when(tipoRepository.recuperoTipoJob()).thenReturn(ottieniTipoJob());
-    List<JobTipoEntity> jobTipo = tipoRepository.recuperoTipoJob();
+    List<JobTipoEntity> result = ottieniTipoJob();
+
     jobService.recuperoTipoJob();
+
+
+
+    Assert.assertNotNull(result);
+    Assert.assertEquals(jobEntity, result.get(0));
   }
   @Test
   public void SalvataggioJobTest1() throws CustomException {
@@ -347,12 +362,19 @@ public class JobServiceTest {
         "N");
   }
 
+  private JobStatoEntity mapperStatoDto(){
+    return new JobStatoEntity("A","Aperto");
+  }
+
+  private JobTipoEntity mapperTipoDto(){
+    return new JobTipoEntity("C","Consulenza","N","N","");
+  }
   public List<JobTipoEntity> ottieniTipoJob() {
-    return asList(new JobTipoEntity("a", "a", "a", "a", "A"));
+    return asList(new JobTipoEntity("C","Consulenza","N","N",""), new JobTipoEntity("P","Progetto","N","N","B"));
   }
 
   public List<JobStatoEntity> ottieniStatiJob() {
-    return asList(new JobStatoEntity("a", "a"));
+    return asList(new JobStatoEntity("A","Aperto"),new JobStatoEntity("C","Chiuso"),new JobStatoEntity("N","Non accettabile"));
   }
 
   private boolean existsById() {

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobService {
@@ -235,11 +236,15 @@ public class JobService {
   }
 
   public void controlloChiusuraJob(String codJob) throws CustomException {
-    JobDto job = mapper.toDto(repository.recuperoJob(codJob));
-    System.out.println(job.getCodJob());
-    if (!job.getCodStatoJob().equals("C")) {
-      job.setCodStatoJob("C");
+    Optional<JobDto> jobO = Optional.of(mapper.toDto(repository.recuperoJob(codJob)));
+    if (jobO.isPresent()) {
+      JobDto job = jobO.get();
+      if (!job.getCodStatoJob().equals("C")) {
+        job.setCodStatoJob("C");
+      }
+      repository.save(mapper.toEntity(job));
+    } else {
+      throw new CustomException("Errore");
     }
-    repository.save(mapper.toEntity(job));
   }
 }

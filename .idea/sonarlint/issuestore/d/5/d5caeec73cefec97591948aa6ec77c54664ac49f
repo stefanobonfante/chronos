@@ -1,0 +1,26 @@
+
+’
+java:S1192"uDefine a constant instead of duplicating this literal "The method findAll has been invoked for the table {}" 4 times.(·ãøØ8Ï¯Á1
+’
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Õ§ì ÿÿÿÿÿ8‘Ï¯Á1
+’
+java:S1319#"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(šüÛ³şÿÿÿÿ8‘Ï¯Á1
+‚
+java:S1319("eThe type of "spese" should be an interface such as "List" rather than the implementation "ArrayList".(ş¥¶®8‘Ï¯Á1
+‚
+java:S13194"eThe type of "spese" should be an interface such as "List" rather than the implementation "ArrayList".(”â•8’Ï¯Á1
+m	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿å©8’Ï¯Á1
+m	java:S117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿å©8’Ï¯Á1
+m	java:S117`"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿å©8’Ï¯Á1
+|
+java:S3655,"ZCall "codice_utente.isPresent()" or "!codice_utente.isEmpty()" before accessing the value.(Åš€Òüÿÿÿÿ8ÔÏ¯Á1
+|
+java:S3655K"ZCall "codice_utente.isPresent()" or "!codice_utente.isEmpty()" before accessing the value.(Åš€Òüÿÿÿÿ8ÔÏ¯Á1
+w
+java:S3655j"ZCall "codice_utente.isPresent()" or "!codice_utente.isEmpty()" before accessing the value.(®ü³µ8ÕÏ¯Á1
+K
+java:S3416"/Update this logger to use "SpeseService.class".(¶ÉÒ]8×Ï¯Á1
+s
+java:S2159l"VRemove this call to "equals"; comparisons between unrelated types always return false.(ŒÍÑ8ğÏ¯Á1
+d
+java:S1126ƒ"AReplace this if-then-else statement by a single return statement.(™±öıÿÿÿÿ8ôÏ¯Á1

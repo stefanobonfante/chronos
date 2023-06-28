@@ -4,6 +4,7 @@ import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
 import it.addvalue.chronos.model.dto.carichiDTO;
 import it.addvalue.chronos.model.entity.CarichiEntity;
 import it.addvalue.chronos.model.entity.User;
+import it.addvalue.chronos.model.mapper.CarichiDTOEntityMapper;
 import it.addvalue.chronos.repository.CarichiRepository;
 import it.addvalue.chronos.repository.IUserRepository;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -21,6 +21,7 @@ public class CarichiService {
 
   @Autowired private IUserRepository userRepository;
   @Autowired private CarichiRepository carichiRepository;
+  @Autowired protected CarichiDTOEntityMapper mapper;
 
   public List<carichiDTO> getElencoCarichiGiorno(
       int anno, int mese, Integer giorno, String codiceUtente) {
@@ -31,13 +32,13 @@ public class CarichiService {
       // Recupera i carichi del giorno specificato
       List<CarichiEntity> carichi =
           carichiRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
-      return mapToCarichiDto(carichi);
+      return mapper.toDtos(carichi);
     }
   }
 
   public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
     List<CarichiEntity> carichi = carichiRepository.queryCarichiMese(anno, mese, codiceUtente);
-    return mapToCarichiDto(carichi);
+    return mapper.toDtos(carichi);
   }
 
   // parte 4.1.1
@@ -59,7 +60,7 @@ public class CarichiService {
   }
 
   public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException {
-    List<CarichiEntity> carichiEntities = mapToCarichiEntity(carichiDtoList);
+    List<CarichiEntity> carichiEntities = mapper.toEntities(carichiDtoList);
     for (CarichiEntity carico : carichiEntities) {
       int auto;
       Optional<List<User>> utente = this.userRepository.getLivelloUtente1(carico.getCodUtente());
@@ -75,37 +76,5 @@ public class CarichiService {
       }
     }
     return true;
-  }
-
-  private List<carichiDTO> mapToCarichiDto(List<CarichiEntity> carichiEntities) {
-    return carichiEntities.stream().map(this::mapToCaricoDto).collect(Collectors.toList());
-  }
-
-  private carichiDTO mapToCaricoDto(CarichiEntity carichiEntity) {
-    carichiDTO dto = new carichiDTO();
-    dto.setIdCarico(carichiEntity.getIdCarico());
-    dto.setAnno(carichiEntity.getAnno());
-    dto.setMese(carichiEntity.getMese());
-    dto.setGiorno(carichiEntity.getGiorno());
-    dto.setCodUtente(carichiEntity.getCodUtente());
-    dto.setCodJob(carichiEntity.getCodJob());
-    // Mappa altri campi...
-    return dto;
-  }
-
-  private List<CarichiEntity> mapToCarichiEntity(List<carichiDTO> carichiDtoList) {
-    return carichiDtoList.stream().map(this::mapToCaricoEntity).collect(Collectors.toList());
-  }
-
-  private CarichiEntity mapToCaricoEntity(carichiDTO carichiDTO) {
-    CarichiEntity entity = new CarichiEntity();
-    entity.setIdCarico(carichiDTO.getIdCarico());
-    entity.setAnno(carichiDTO.getAnno());
-    entity.setMese(carichiDTO.getMese());
-    entity.setGiorno(carichiDTO.getGiorno());
-    entity.setCodUtente(carichiDTO.getCodUtente());
-    entity.setCodJob(carichiDTO.getCodJob());
-    // Mappa altri campi...
-    return entity;
   }
 }

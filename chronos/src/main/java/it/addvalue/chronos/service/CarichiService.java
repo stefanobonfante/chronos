@@ -105,7 +105,7 @@ public class CarichiService {
     return true;
   }
 
-  private boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
+  public boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
     User utente = this.userRepository.findByUserCode(carico.getCodUtente());
     if ((carico.getCodJob() != null
             && carico.getCodTask() != null

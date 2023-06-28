@@ -47,14 +47,18 @@ public class CarichiServiceTest {
 
         when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
         when(carichiRepository.existsById(caricoEntity.getIdCarico())).thenReturn(false);
-
         assertThatThrownBy(() -> servizio.delete(carichiDTOS)).isInstanceOf(EsecuzioneErrataException.class);
 
     }
 
     @Test
-    public void testSalvataggio(){
+    public void testSalvataggio() throws EsecuzioneErrataException {
+        List<carichiDTO> carichiDTOS= dammiUnaListaDto();
+        CarichiEntity caricoEntity= dammiUnaListaEntity().get(0);
+        when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+        when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s","s","s",99));
 
+        assertThatThrownBy(() -> servizio.salvataggio(carichiDTOS)).isInstanceOf(EsecuzioneErrataException.class);
     }
 
     public List<carichiDTO> dammiUnaListaDto(){

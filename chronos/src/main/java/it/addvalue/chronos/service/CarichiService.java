@@ -30,7 +30,7 @@ public class CarichiService {
     List<CarichiEntity> listaCarichi = caricoEM.toEntities(carichiDTO);
     for (CarichiEntity caricoAggiornato : listaCarichi) {
       Optional<CarichiEntity> change = caricoRepository.findById(caricoAggiornato.getIdCarico());
-      if (change.isPresent()) {
+      if (change.isPresent()&& isVerificato(change.get())) {
         caricoRepository.save(caricoAggiornato);
       } else {
         throw new EsecuzioneErrataException("Errore: il carico non esiste nel database");

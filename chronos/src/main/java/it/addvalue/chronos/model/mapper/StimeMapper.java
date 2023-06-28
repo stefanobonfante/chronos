@@ -3,6 +3,7 @@ package it.addvalue.chronos.model.mapper;
 import it.addvalue.chronos.model.dto.StimeDTO;
 import it.addvalue.chronos.model.entity.StimeEntity;
 import it.addvalue.chronos.model.entity.StimeProjection;
+import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -52,5 +53,13 @@ public class StimeMapper {
     stimeProjection.setCodTask(toDto(entity).getCodTask());
     stimeProjection.setDesTask(toDto(entity).getDesTask());
     return stimeProjection;
+  }
+  public StimeProjectionSubTask toProjectionSubTask(StimeEntity entity) {
+    StimeProjectionSubTask stimeProjectionSubTask = new StimeProjectionSubTask();
+    stimeProjectionSubTask.setCodJob(toDto(entity).getCodJob());
+    stimeProjectionSubTask.setCodTask(toDto(entity).getCodTask());
+    stimeProjectionSubTask.setCodSubTask(toDto(entity).getDesTask());
+    stimeProjectionSubTask.setDesSubTask(toDto(entity).getDesSubtask());
+    return stimeProjectionSubTask;
   }
 }

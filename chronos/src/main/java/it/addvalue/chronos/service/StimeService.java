@@ -2,6 +2,7 @@ package it.addvalue.chronos.service;
 
 import it.addvalue.chronos.model.entity.StimeEntity;
 import it.addvalue.chronos.model.entity.StimeProjection;
+import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import it.addvalue.chronos.repository.StimeRrepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -20,9 +21,15 @@ public class StimeService {
   @Autowired StimeMapper stimeMapper;
 
   public List<StimeProjection> recuperoTask(String cod_job) {
-    List<StimeEntity> listaStime = stimeRrepository.getStime(cod_job);
+    List<StimeEntity> listaStime = stimeRrepository.getTask(cod_job);
     List<StimeProjection> listaDTO = new ArrayList<>();
     listaStime.stream().forEach(x -> listaDTO.add(stimeMapper.toProjection(x)));
+    return listaDTO;
+  }
+  public List<StimeProjectionSubTask> recuperoSubTask (String cod_job, String cod_task){
+    List<StimeEntity> listaStime = stimeRrepository.getSubTask(cod_job,cod_task);
+    List<StimeProjectionSubTask> listaDTO = new ArrayList<>();
+    listaStime.stream().forEach(x -> listaDTO.add(stimeMapper.toProjectionSubTask(x)));
     return listaDTO;
   }
 }

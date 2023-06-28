@@ -6,13 +6,33 @@ import it.addvalue.chronos.model.entity.CarichiEntity;
 import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.model.mapper.CarichiDTOEntityMapper;
 import it.addvalue.chronos.repository.CarichiRepository;
+<<<<<<< HEAD
+import it.addvalue.chronos.repository.IUserRepository;
+import lombok.AllArgsConstructor;
+=======
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import it.addvalue.chronos.repository.IUserRepository;
+>>>>>>> main-parte-2
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
+import java.util.List;
+import java.util.Optional;
+
+@AllArgsConstructor
+@Service
+public class CarichiService {
+
+  @Autowired private IUserRepository userRepository;
+  @Autowired private CarichiRepository carichiRepository;
+  @Autowired protected CarichiDTOEntityMapper mapper;
+
+  public List<carichiDTO> getElencoCarichiGiorno(
+      int anno, int mese, Integer giorno, String codiceUtente) {
+=======
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,19 +61,64 @@ public class CarichiService {
 
   public List<carichiDTO> getElencoCarichiGiorno(
       int anno, int mese, String giorno, String codiceUtente) {
+>>>>>>> main-parte-2
     if (giorno == null) {
       // Recupera tutti i carichi del mese
       return getElencoCarichiMese(anno, mese, codiceUtente);
     } else {
       // Recupera i carichi del giorno specificato
+<<<<<<< HEAD
+      List<CarichiEntity> carichi =
+          carichiRepository.queryCarichiGiorno(anno, mese, giorno, codiceUtente);
+      return mapper.toDtos(carichi);
+=======
       int giornoEffettivo = Integer.parseInt(giorno);
       List<CarichiEntity> carichi =
           caricoRepository.queryCarichiGiorno(anno, mese, giornoEffettivo, codiceUtente);
       return caricoEM.toDtos(carichi);
+>>>>>>> main-parte-2
     }
   }
 
   public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
+<<<<<<< HEAD
+    List<CarichiEntity> carichi = carichiRepository.queryCarichiMese(anno, mese, codiceUtente);
+    return mapper.toDtos(carichi);
+  }
+
+  // parte 4.1.1
+  public boolean getStatoMese(int anno, int mese, String codiceUtente, String stato) {
+    List<CarichiEntity> statoMeseList =
+        carichiRepository.queryStatoMese(anno, mese, codiceUtente, stato);
+    return !statoMeseList.isEmpty();
+  }
+
+  public boolean presenzaCarichi(
+      int anno, int mese, int giorno, String codiceUtente, String codJob) {
+    if (carichiRepository
+        .queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob)
+        .isEmpty()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException {
+    List<CarichiEntity> carichiEntities = mapper.toEntities(carichiDtoList);
+    for (CarichiEntity carico : carichiEntities) {
+      int auto;
+      Optional<List<User>> utente = this.userRepository.getLivelloUtente1(carico.getCodUtente());
+      if (utente.isPresent()) {
+        auto = utente.get().get(0).getLevel();
+      } else {
+        auto = 10;
+      }
+      if (carico.getMese() == LocalDate.now().getMonthValue() || auto <= 3) {
+        carichiRepository.delete(carico);
+      } else {
+        throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
+=======
     List<CarichiEntity> carichi = caricoRepository.queryCarichiMese(anno, mese, codiceUtente);
     return caricoEM.toDtos(carichi);
   }
@@ -79,10 +144,13 @@ public class CarichiService {
         caricoRepository.delete(carico);
       } else {
         throw new EsecuzioneErrataException("Impossibile eseguire l'operazione. il mese e terminato o il livello utenete non e adeguato.");
+>>>>>>> main-parte-2
       }
     }
     return true;
   }
+<<<<<<< HEAD
+=======
 
   public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException {
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiToSave);
@@ -153,15 +221,5 @@ public class CarichiService {
     } else throw new EsecuzioneErrataException("hai inserito dei campi errati");
     return true;
   }
-
-  public boolean presenzaCarichi(
-          int anno, int mese, int giorno, String codiceUtente, String codJob) {
-    if (caricoRepository
-            .queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob)
-            .isEmpty()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+>>>>>>> main-parte-2
 }

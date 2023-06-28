@@ -39,6 +39,19 @@ public class JobServiceTest {
   @Mock JobTipoDtoJobTipoEntityMapper mapper;
 
   @Test
+  public void StatoTest() {
+    Mockito.when(statoRepository.recuperoStatiJob()).thenReturn(ottieniStatiJob());
+    List<JobStatoEntity> jobStati = statoRepository.recuperoStatiJob();
+    jobService.recuperoStatiJob();
+  }
+
+  @Test
+  public void TipoTest() {
+    Mockito.when(tipoRepository.recuperoTipoJob()).thenReturn(ottieniTipoJob());
+    List<JobTipoEntity> jobTipo = tipoRepository.recuperoTipoJob();
+    jobService.recuperoTipoJob();
+  }
+  @Test
   public void SalvataggioJobTest1() throws CustomException {
     JobEntity jobEntity = mapperEntity();
     JobDto jobDto = mapperDto();
@@ -114,7 +127,7 @@ public class JobServiceTest {
   }
 
   @Test
-  public void ModificaJobTest() throws CustomException {
+  public void ModificaJobTest1() throws CustomException {
     JobEntity jobEntity = mapperEntity();
     JobDto jobDto = mapperDto();
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
@@ -128,18 +141,29 @@ public class JobServiceTest {
   }
 
   @Test
-  public void StatoTest() {
-    Mockito.when(statoRepository.recuperoStatiJob()).thenReturn(ottieniStatiJob());
-    List<JobStatoEntity> jobStati = statoRepository.recuperoStatiJob();
-    jobService.recuperoStatiJob();
+  public void ModificaJobTest2() throws CustomException {
+    JobDto jobDto = mapperDto();
+    jobDto.setDesJobBreve(null);
+    jobDto.setDesJob(null);
+    jobDto.setCodTipoJob(null);
+    jobDto.setDataInizio(null);
+    Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
+    Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
+    List<JobDto> jobs = asList(jobDto);
+    assertThatThrownBy(()->jobService.modificaJob(jobs)).isInstanceOf(CustomException.class).hasMessage("Errore campo obbligatorio mancante, riprovare");
   }
 
   @Test
-  public void TipoTest() {
-    Mockito.when(tipoRepository.recuperoTipoJob()).thenReturn(ottieniTipoJob());
-    List<JobTipoEntity> jobTipo = tipoRepository.recuperoTipoJob();
-    jobService.recuperoTipoJob();
+  public void ModificaJobTest3() throws CustomException {
+    JobDto jobDto = mapperDto();
+    jobDto.setCodCliente(null);
+    jobDto.setCodTipoJob(null);
+    Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
+    Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
+    List<JobDto> jobs = asList(jobDto);
+    assertThatThrownBy(()->jobService.modificaJob(jobs)).isInstanceOf(CustomException.class).hasMessage("Attenzione!!! campi non correttamente valorizzati. Salvataggio non eseguito");
   }
+
 
   @Test
   public void ControlloChiusuraJobTest1() throws CustomException {

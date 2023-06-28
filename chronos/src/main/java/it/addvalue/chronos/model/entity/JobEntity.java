@@ -1,4 +1,4 @@
-/*package it.addvalue.chronos.model.entity;
+package it.addvalue.chronos.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name = "TB_JOBS")
 public class JobEntity {
-<<<<<<< HEAD
 
   @Id
   @Column(name = "COD_JOB")
@@ -147,6 +146,4 @@ public class JobEntity {
   @Column(name = "FLG_RIEPILOGO")
   private String flgRieplogo;
 }
-=======
-}*/
->>>>>>> dde552215286bd1fc37d7dded81f0ca24ef7e45a
+

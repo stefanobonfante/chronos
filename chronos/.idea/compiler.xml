@@ -13,6 +13,10 @@
         <module name="chronos" />
       </profile>
     </annotationProcessing>
+<<<<<<< HEAD
+=======
+    <bytecodeTargetLevel target="11" />
+>>>>>>> main-parte-2
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

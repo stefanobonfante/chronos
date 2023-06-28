@@ -417,7 +417,10 @@
       </environment>
     </general-settings>
   </component>
+<<<<<<< HEAD
   <component name="DBNavigator.Project.StatementExecutionManager">
     <execution-variables />
   </component>
+=======
+>>>>>>> main-parte-2
 </project>

@@ -13,9 +13,7 @@ import javax.persistence.*;
 @Table(name = "TB_CARICHI")
 public class CarichiEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private int IdCarico;
+  @Id private String IdCarico;
 
   @Column(name = "COD_UTENTE")
   private String codUtente;

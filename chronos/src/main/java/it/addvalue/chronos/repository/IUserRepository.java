@@ -6,17 +6,21 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
+=======
+>>>>>>> dde552215286bd1fc37d7dded81f0ca24ef7e45a
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, String> {
 
-  Optional<List<User>> findByUserCode(String userCode);
+
+  User findByUserCode(String userCode);
 
   @Query(
       value =

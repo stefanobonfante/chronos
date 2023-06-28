@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TB_UTENTI")
 public class User {
+
   @Id
   @Column(name = "COD_UTENTE")
   private String userCode;

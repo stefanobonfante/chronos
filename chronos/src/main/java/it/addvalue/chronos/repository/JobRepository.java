@@ -1,4 +1,4 @@
-package it.addvalue.chronos.repository;
+/*package it.addvalue.chronos.repository;
 
 import it.addvalue.chronos.model.entity.JobEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+<<<<<<< HEAD
 @Repository
 public interface JobRepository extends JpaRepository<JobEntity, String> {
 
@@ -28,3 +29,8 @@ public interface JobRepository extends JpaRepository<JobEntity, String> {
       nativeQuery = true)
   List<JobEntity> queryElencoAttivita(String codiceJob, String codiceTask, String codiceSubtask);
 }
+=======
+    //@Query(value = "SELECT * FROM TB_JOBS WHERE COD_JOB=?1 AND COD_CLIENTE=?2")
+    //List<JobEntity>
+}*/
+>>>>>>> dde552215286bd1fc37d7dded81f0ca24ef7e45a

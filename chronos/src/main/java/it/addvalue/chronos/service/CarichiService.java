@@ -25,7 +25,7 @@ public class CarichiService {
   @Autowired private CarichiDTOEntityMapper caricoEM;
   @Autowired private IUserRepository userRepository;
 
-  public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO)
+  public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO) //TESTATO FUNZIONA
       throws EsecuzioneErrataException {
     List<CarichiEntity> listaCarichi = caricoEM.toEntities(carichiDTO);
     for (CarichiEntity caricoAggiornato : listaCarichi) {
@@ -39,7 +39,7 @@ public class CarichiService {
     return true;
   }
 
-  public List<carichiDTO> getElencoCarichiGiorno(
+  public List<carichiDTO> getElencoCarichiGiorno( //DA TESTARE
       int anno, int mese, String giorno, String codiceUtente) {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
@@ -66,7 +66,7 @@ public class CarichiService {
     return !statoMeseList.isEmpty();
   }
 
-  public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException {
+  public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException { //TESTATO FUNZIONA
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiDtoList);
     User utente;
     int auto;
@@ -84,7 +84,7 @@ public class CarichiService {
     return true;
   }
 
-  public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException {
+  public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException { //TESTATO FUNZIONA
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiToSave);
     List<CarichiEntity> carichiDaSalvare = new ArrayList<>();
     int oreTot = 0;
@@ -105,7 +105,7 @@ public class CarichiService {
     return true;
   }
 
-  public boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException {
+  public boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException { //TESTATO FUNZIONA
     User utente = this.userRepository.findByUserCode(carico.getCodUtente());
     if ((carico.getCodJob() != null
             && carico.getCodTask() != null
@@ -154,7 +154,7 @@ public class CarichiService {
     return true;
   }
 
-  public boolean presenzaCarichi(
+  public boolean presenzaCarichi( //TESTATO FUNZIONA
           int anno, int mese, int giorno, String codiceUtente, String codJob) {
     if (caricoRepository
             .queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob)

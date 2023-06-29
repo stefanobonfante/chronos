@@ -1,5 +1,6 @@
 package it.addvalue.chronos.service;
 
+import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
 import it.addvalue.chronos.model.entity.StimeEntity;
 import it.addvalue.chronos.model.entity.StimeProjection;
 import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
@@ -20,8 +21,11 @@ public class StimeService {
   @Autowired StimeRrepository stimeRrepository;
   @Autowired StimeMapper stimeMapper;
 
-  public List<StimeProjection> recuperoTask(String cod_job) {
+  public List<StimeProjection> recuperoTask(String cod_job) throws EsecuzioneErrataException {
     List<StimeEntity> listaStime = stimeRrepository.getTask(cod_job);
+    if(listaStime.isEmpty()){
+      throw new EsecuzioneErrataException("sono stati immessi dei campi errati");
+    }
     List<StimeProjection> listaDTO = new ArrayList<>();
     listaStime.stream().forEach(x -> listaDTO.add(stimeMapper.toProjection(x)));
     return listaDTO;

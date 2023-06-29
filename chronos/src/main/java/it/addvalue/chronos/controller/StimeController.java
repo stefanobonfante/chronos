@@ -1,5 +1,6 @@
 package it.addvalue.chronos.controller;
 
+import it.addvalue.chronos.core.exception.EsecuzioneErrataException;
 import it.addvalue.chronos.model.entity.StimeProjection;
 import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import it.addvalue.chronos.service.StimeService;
@@ -17,7 +18,7 @@ public class StimeController {
   @Autowired public final StimeService stimeService;
 
   @GetMapping(path = "getTask")
-  public ResponseEntity<List<StimeProjection>> getTask(@RequestParam String cod_job) {
+  public ResponseEntity<List<StimeProjection>> getTask(@RequestParam String cod_job) throws EsecuzioneErrataException {
     return ResponseEntity.ok(stimeService.recuperoTask(cod_job));
   }
   @GetMapping(path = "getSubTask")

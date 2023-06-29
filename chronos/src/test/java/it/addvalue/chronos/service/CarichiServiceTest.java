@@ -22,6 +22,7 @@ import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -30,6 +31,13 @@ public class CarichiServiceTest {
 
   @InjectMocks CarichiService servizio = new CarichiService();
   @Mock IUserRepository userRepository;
+    @InjectMocks
+    CarichiService servizio = new CarichiService();
+    @Mock
+    IUserRepository userRepository;
+
+    @Mock
+    CarichiRepository carichiRepository;
 
   @Mock CarichiRepository carichiRepository;
 
@@ -47,7 +55,95 @@ public class CarichiServiceTest {
   }
 
   @Test
-  public void testSalvataggio() throws EsecuzioneErrataException {
+  public void testdeleteDue() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+
+    when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+    when(carichiRepository.existsById(caricoEntity.getIdCarico())).thenReturn(true);
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+
+    assertTrue(servizio.delete(carichiDTOS));
+  }
+
+  @Test
+  public void testdeleteTre() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+
+    when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+    when(carichiRepository.existsById(caricoEntity.getIdCarico())).thenReturn(true);
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 99));
+
+    assertThatThrownBy(() -> servizio.delete(carichiDTOS))
+            .isInstanceOf(EsecuzioneErrataException.class);
+  }
+
+  @Test
+  public void testGetElencoCarichiGiorno() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    List<CarichiEntity> carichiEntity = dammiUnaListaEntity();
+
+    when(carichiRepository.queryCarichiGiorno(1999,3,1,"abatif")).thenReturn(carichiEntity);
+    when(mapper.toDtos(carichiEntity)).thenReturn(carichiDTOS);
+
+    assertEquals(carichiDTOS,servizio.getElencoCarichiGiorno(1999,3,"1","abatif"));
+  }
+
+  @Test
+  public void testIsVerificatoUno() throws EsecuzioneErrataException {
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    assertTrue(servizio.isVerificato(caricoEntity));
+
+  }
+
+  @Test
+  public void testIsVerificatoDue() throws EsecuzioneErrataException {
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    caricoEntity.setFlgStr("S");
+    caricoEntity.setOraInizioStr("12:00");
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
+            .isInstanceOf(EsecuzioneErrataException.class);
+
+  }
+
+  @Test
+  public void testIsVerificatoTre() throws EsecuzioneErrataException {
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    caricoEntity.setOre(14);
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
+            .isInstanceOf(EsecuzioneErrataException.class);
+
+  }
+
+  @Test
+  public void testIsVerificatoQtt() throws EsecuzioneErrataException {
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    caricoEntity.setFlgStr("r");
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
+            .isInstanceOf(EsecuzioneErrataException.class);
+
+  }
+
+
+  @Test
+  public void testSalvataggioUno() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
+
+    boolean esito = servizio.salvataggio(carichiDTOS);
+    assertTrue(esito);
+  }
+
+  @Test
+  public void testSalvataggioDue() throws EsecuzioneErrataException {
     List<carichiDTO> carichiDTOS = dammiUnaListaDto();
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
     when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
@@ -59,19 +155,50 @@ public class CarichiServiceTest {
   }
 
   @Test
-  public void testModifica() throws EsecuzioneErrataException {
+  public void testModificaUno() throws EsecuzioneErrataException {
     List<carichiDTO> carichiDTOS = dammiUnaListaDto();
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+
     when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
     when(carichiRepository.findById(caricoEntity.getIdCarico()))
         .thenReturn(Optional.of(caricoEntity));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
 
     boolean esito = servizio.modificaElencoCarichi(carichiDTOS);
     assertTrue(esito);
-    // assertThatThrownBy(() ->
-    // servizio.modificaElencoCarichi(carichiDTOS)).isInstanceOf(EsecuzioneErrataException.class);
-
   }
+
+  @Test
+  public void testModificaDue() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
+    caricoEntity.setIdCarico("");
+    when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
+    assertThatThrownBy(() -> servizio.modificaElencoCarichi(carichiDTOS))
+        .isInstanceOf(EsecuzioneErrataException.class);
+  }
+
+  @Test
+  public void testGetElencoCarichiMese() throws EsecuzioneErrataException {
+    List<carichiDTO> carichiDTOS = dammiUnaListaDto();
+    List<CarichiEntity> carichiEntity = dammiUnaListaEntity();
+
+    when(carichiRepository.queryCarichiMese(1999, 3, "abatif")).thenReturn(carichiEntity);
+    when(mapper.toDtos(carichiEntity)).thenReturn(carichiDTOS);
+
+    List<carichiDTO> risultato = servizio.getElencoCarichiMese(1999, 3, "abatif");
+    assertEquals(dammiUnaListaDto(), risultato);
+  }
+
+  @Test
+  public void testGetStatoMese(){
+    List<CarichiEntity> carichiEntity = dammiUnaListaEntity();
+
+    when(carichiRepository.queryStatoMese(1999,3,"abatif","N")).thenReturn(carichiEntity);
+    boolean esito=servizio.getStatoMese(1999,3,"abatif","N");
+    assertTrue(esito);
+  }
+
 
   @Test
   public void testPresenzaCarichi() {
@@ -103,7 +230,7 @@ public class CarichiServiceTest {
   public List<CarichiEntity> dammiUnaListaEntity() {
     return Arrays.asList(
         new CarichiEntity(
-            "", "abatif", 1999, 6, 1, "a", "a", "a", "a", "a", "18:00", "N", 8, "a", "N", "a",
+            "a", "abatif", 1999, 3, 1, "a", "a", "a", "a", "a", "18:00", "N", 8, "a", "N", "a",
             "18:00", "a", "N"));
   }
 }

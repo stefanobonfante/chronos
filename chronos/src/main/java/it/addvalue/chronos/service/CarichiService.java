@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class CarichiService {
   @Autowired private CarichiRepository caricoRepository;
@@ -41,7 +40,7 @@ public class CarichiService {
   }
 
   public List<carichiDTO> getElencoCarichiGiorno( // DA TESTARE
-      int anno, int mese, String giorno, String codiceUtente) {
+      int anno, int mese, String giorno, String codiceUtente) throws EsecuzioneErrataException {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
       return getElencoCarichiMese(anno, mese, codiceUtente);
@@ -54,9 +53,14 @@ public class CarichiService {
     }
   }
 
-  public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente) {
+  public List<carichiDTO> getElencoCarichiMese(int anno, int mese, String codiceUtente)
+      throws EsecuzioneErrataException { // TESTATO FUNZIONA
     List<CarichiEntity> carichi = caricoRepository.queryCarichiMese(anno, mese, codiceUtente);
-    return caricoEM.toDtos(carichi);
+    if (carichi.isEmpty()) {
+      throw new EsecuzioneErrataException("non e stato trovato nessun elemento");
+    } else {
+      return caricoEM.toDtos(carichi);
+    }
   }
 
   // parte 4.1.1
@@ -149,7 +153,7 @@ public class CarichiService {
           throw new EsecuzioneErrataException("ore errate");
         }
       } else {
-        throw new EsecuzioneErrataException("hai inserito dei campi errati");
+        throw new EsecuzioneErrataException("flag straordinari non trovato");
       }
 
     } else throw new EsecuzioneErrataException("hai inserito dei campi errati");

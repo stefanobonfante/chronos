@@ -7,7 +7,6 @@ import it.addvalue.chronos.model.entity.User;
 import it.addvalue.chronos.model.mapper.CarichiDTOEntityMapper;
 import it.addvalue.chronos.repository.CarichiRepository;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 import it.addvalue.chronos.repository.IUserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -160,8 +159,10 @@ public class CarichiService {
     return true;
   }
 
-  public boolean presenzaCarichi( int anno, int mese, int giorno, String codiceUtente, String codJob) {
-    return !caricoRepository.queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob).isEmpty();
-
+  public boolean presenzaCarichi(
+      int anno, int mese, int giorno, String codiceUtente, String codJob) {
+    return !caricoRepository
+        .queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob)
+        .isEmpty();
   }
 }

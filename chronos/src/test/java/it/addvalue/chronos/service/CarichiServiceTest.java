@@ -31,15 +31,9 @@ public class CarichiServiceTest {
 
   @InjectMocks CarichiService servizio = new CarichiService();
   @Mock IUserRepository userRepository;
-    @InjectMocks
-    CarichiService servizio = new CarichiService();
-    @Mock
-    IUserRepository userRepository;
-
-    @Mock
-    CarichiRepository carichiRepository;
 
   @Mock CarichiRepository carichiRepository;
+
 
   @Mock CarichiDTOEntityMapper mapper;
 
@@ -61,7 +55,8 @@ public class CarichiServiceTest {
 
     when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
     when(carichiRepository.existsById(caricoEntity.getIdCarico())).thenReturn(true);
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
 
     assertTrue(servizio.delete(carichiDTOS));
   }
@@ -73,10 +68,11 @@ public class CarichiServiceTest {
 
     when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
     when(carichiRepository.existsById(caricoEntity.getIdCarico())).thenReturn(true);
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 99));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 99));
 
     assertThatThrownBy(() -> servizio.delete(carichiDTOS))
-            .isInstanceOf(EsecuzioneErrataException.class);
+        .isInstanceOf(EsecuzioneErrataException.class);
   }
 
   @Test
@@ -84,18 +80,18 @@ public class CarichiServiceTest {
     List<carichiDTO> carichiDTOS = dammiUnaListaDto();
     List<CarichiEntity> carichiEntity = dammiUnaListaEntity();
 
-    when(carichiRepository.queryCarichiGiorno(1999,3,1,"abatif")).thenReturn(carichiEntity);
+    when(carichiRepository.queryCarichiGiorno(1999, 3, 1, "abatif")).thenReturn(carichiEntity);
     when(mapper.toDtos(carichiEntity)).thenReturn(carichiDTOS);
 
-    assertEquals(carichiDTOS,servizio.getElencoCarichiGiorno(1999,3,"1","abatif"));
+    assertEquals(carichiDTOS, servizio.getElencoCarichiGiorno(1999, 3, "1", "abatif"));
   }
 
   @Test
   public void testIsVerificatoUno() throws EsecuzioneErrataException {
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
     assertTrue(servizio.isVerificato(caricoEntity));
-
   }
 
   @Test
@@ -103,32 +99,31 @@ public class CarichiServiceTest {
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
     caricoEntity.setFlgStr("S");
     caricoEntity.setOraInizioStr("12:00");
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
     assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
-            .isInstanceOf(EsecuzioneErrataException.class);
-
+        .isInstanceOf(EsecuzioneErrataException.class);
   }
 
   @Test
   public void testIsVerificatoTre() throws EsecuzioneErrataException {
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
     caricoEntity.setOre(14);
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
     assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
-            .isInstanceOf(EsecuzioneErrataException.class);
-
+        .isInstanceOf(EsecuzioneErrataException.class);
   }
 
   @Test
   public void testIsVerificatoQtt() throws EsecuzioneErrataException {
     CarichiEntity caricoEntity = dammiUnaListaEntity().get(0);
     caricoEntity.setFlgStr("r");
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
     assertThatThrownBy(() -> servizio.isVerificato(caricoEntity))
-            .isInstanceOf(EsecuzioneErrataException.class);
-
+        .isInstanceOf(EsecuzioneErrataException.class);
   }
-
 
   @Test
   public void testSalvataggioUno() throws EsecuzioneErrataException {
@@ -162,7 +157,8 @@ public class CarichiServiceTest {
     when(mapper.toEntities(carichiDTOS)).thenReturn(dammiUnaListaEntity());
     when(carichiRepository.findById(caricoEntity.getIdCarico()))
         .thenReturn(Optional.of(caricoEntity));
-    when(userRepository.findByUserCode(caricoEntity.getCodUtente())).thenReturn(new User("s", "s", "s", 3));
+    when(userRepository.findByUserCode(caricoEntity.getCodUtente()))
+        .thenReturn(new User("s", "s", "s", 3));
 
     boolean esito = servizio.modificaElencoCarichi(carichiDTOS);
     assertTrue(esito);
@@ -191,14 +187,13 @@ public class CarichiServiceTest {
   }
 
   @Test
-  public void testGetStatoMese(){
+  public void testGetStatoMese() {
     List<CarichiEntity> carichiEntity = dammiUnaListaEntity();
 
-    when(carichiRepository.queryStatoMese(1999,3,"abatif","N")).thenReturn(carichiEntity);
-    boolean esito=servizio.getStatoMese(1999,3,"abatif","N");
+    when(carichiRepository.queryStatoMese(1999, 3, "abatif", "N")).thenReturn(carichiEntity);
+    boolean esito = servizio.getStatoMese(1999, 3, "abatif", "N");
     assertTrue(esito);
   }
-
 
   @Test
   public void testPresenzaCarichi() {

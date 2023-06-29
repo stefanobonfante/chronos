@@ -34,7 +34,7 @@ public class CarichiController {
       @RequestParam("anno") int anno,
       @RequestParam("mese") int mese,
       @RequestParam("codiceUtente") String codiceUtente,
-      @RequestParam(value = "giorno") String giorno) {
+      @RequestParam(value = "giorno") String giorno) throws EsecuzioneErrataException {
 
     return servizio.getElencoCarichiGiorno(anno, mese, giorno, codiceUtente);
   }

@@ -6,7 +6,6 @@ import it.addvalue.chronos.model.entity.StimeProjection;
 import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import it.addvalue.chronos.repository.StimeRrepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import it.addvalue.chronos.model.mapper.StimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

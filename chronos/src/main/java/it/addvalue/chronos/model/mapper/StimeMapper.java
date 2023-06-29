@@ -6,8 +6,6 @@ import it.addvalue.chronos.model.entity.StimeProjection;
 import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class StimeMapper {
@@ -30,7 +28,6 @@ public class StimeMapper {
     dto.setIdStima(entity.getIdStima());
     return dto;
   }
-
 
   public StimeEntity toEntity(StimeDTO dto) {
     StimeEntity entity = new StimeEntity();

@@ -5497,3 +5497,45 @@ org.springframework.web.bind.MissingServletRequestParameterException: Required n
 2023-06-29 15:24:08.186  INFO 14224 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-06-29 15:24:08.188  INFO 14224 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
 2023-06-29 15:24:08.197  INFO 14224 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-06-29 17:02:48.598  INFO 28524 --- [main] i.a.chronos.ChronosApplicationTests      : Starting ChronosApplicationTests using Java 11.0.18 on LAPTOP-FDE7GG1I with PID 28524 (started by Carlo in C:\Users\Carlo\OneDrive - Università degli Studi di Padova\Desktop\Giordano\Chronos\chronos)
+2023-06-29 17:02:48.601 DEBUG 28524 --- [main] i.a.chronos.ChronosApplicationTests      : Running with Spring Boot v2.4.3, Spring v5.3.4
+2023-06-29 17:02:48.601  INFO 28524 --- [main] i.a.chronos.ChronosApplicationTests      : The following profiles are active: dev
+2023-06-29 17:02:51.797  INFO 28524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-29 17:02:52.122  INFO 28524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 299 ms. Found 9 JPA repository interfaces.
+2023-06-29 17:02:53.855  INFO 28524 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-29 17:02:54.007  INFO 28524 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2023-06-29 17:02:54.403  INFO 28524 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-29 17:02:55.366  INFO 28524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-29 17:02:56.343  INFO 28524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-29 17:02:56.394  INFO 28524 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2023-06-29 17:02:58.602  INFO 28524 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-29 17:02:58.624  INFO 28524 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 17:03:00.739  WARN 28524 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-29 17:03:01.529  INFO 28524 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-29 17:03:04.109  INFO 28524 --- [main] i.a.chronos.ChronosApplicationTests      : Started ChronosApplicationTests in 16.458 seconds (JVM running for 19.244)
+2023-06-29 17:03:04.541  INFO 28524 --- [main] it.addvalue.chronos.ChronosApplication   : Starting ChronosApplication using Java 11.0.18 on LAPTOP-FDE7GG1I with PID 28524 (started by Carlo in C:\Users\Carlo\OneDrive - Università degli Studi di Padova\Desktop\Giordano\Chronos\chronos)
+2023-06-29 17:03:04.542 DEBUG 28524 --- [main] it.addvalue.chronos.ChronosApplication   : Running with Spring Boot v2.4.3, Spring v5.3.4
+2023-06-29 17:03:04.543  INFO 28524 --- [main] it.addvalue.chronos.ChronosApplication   : The following profiles are active: dev
+2023-06-29 17:03:05.433  INFO 28524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-29 17:03:05.516  INFO 28524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 9 JPA repository interfaces.
+2023-06-29 17:03:05.959  INFO 28524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-06-29 17:03:05.984  INFO 28524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-29 17:03:05.985  INFO 28524 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2023-06-29 17:03:06.304  INFO 28524 --- [main] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring embedded WebApplicationContext
+2023-06-29 17:03:06.305  INFO 28524 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1757 ms
+2023-06-29 17:03:06.538  INFO 28524 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-29 17:03:06.552  INFO 28524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-06-29 17:03:07.059  INFO 28524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-06-29 17:03:07.060  INFO 28524 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2023-06-29 17:03:07.515  INFO 28524 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-29 17:03:07.536  INFO 28524 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 17:03:07.973  WARN 28524 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-29 17:03:08.077  INFO 28524 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-29 17:03:08.348  INFO 28524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/chronos'
+2023-06-29 17:03:08.761  INFO 28524 --- [main] it.addvalue.chronos.ChronosApplication   : Started ChronosApplication in 4.312 seconds (JVM running for 23.897)
+2023-06-29 17:03:08.894  INFO 28524 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 17:03:08.901  INFO 28524 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-29 17:03:08.912  INFO 28524 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-06-29 17:03:09.514  INFO 28524 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 17:03:09.517  INFO 28524 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-06-29 17:03:09.552  INFO 28524 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

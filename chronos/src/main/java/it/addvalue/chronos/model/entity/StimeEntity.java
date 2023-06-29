@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class StimeEntity {
 
   @Id
-  @Column(name="CODSTIMA")
+  @Column(name = "CODSTIMA")
   private String idStima;
 
   @Column(name = "COD_JOB")

@@ -37,7 +37,7 @@ public interface IUserRepository extends JpaRepository<User, String> {
               + "order by COD_UTENTE asc, DES_UTENTE asc",
       nativeQuery = true)
   public List<User> QuerylistaUtentiNoAuth();
-  
+
   User findByUserCode(String userCode);
 
   @Query(

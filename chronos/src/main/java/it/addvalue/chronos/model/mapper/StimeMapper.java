@@ -6,6 +6,9 @@ import it.addvalue.chronos.model.entity.StimeProjection;
 import it.addvalue.chronos.model.entity.StimeProjectionSubTask;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class StimeMapper {
 
@@ -28,6 +31,7 @@ public class StimeMapper {
     return dto;
   }
 
+
   public StimeEntity toEntity(StimeDTO dto) {
     StimeEntity entity = new StimeEntity();
     entity.setCodJob(dto.getCodJob());
@@ -47,19 +51,37 @@ public class StimeMapper {
     return entity;
   }
 
-  public StimeProjection toProjection(StimeEntity entity) {
+  public StimeProjection FromEntityToProjection(StimeEntity entity) {
     StimeProjection stimeProjection = new StimeProjection();
     stimeProjection.setCodJob(toDto(entity).getCodJob());
     stimeProjection.setCodTask(toDto(entity).getCodTask());
     stimeProjection.setDesTask(toDto(entity).getDesTask());
     return stimeProjection;
   }
-  public StimeProjectionSubTask toProjectionSubTask(StimeEntity entity) {
+
+  public StimeProjection FromDtoToProjection(StimeDTO dto) {
+    StimeProjection stimeProjection = new StimeProjection();
+    stimeProjection.setCodJob(dto.getCodJob());
+    stimeProjection.setCodTask(dto.getCodTask());
+    stimeProjection.setDesTask(dto.getDesTask());
+    return stimeProjection;
+  }
+
+  public StimeProjectionSubTask FromEntityToProjectionSubTask(StimeEntity entity) {
     StimeProjectionSubTask stimeProjectionSubTask = new StimeProjectionSubTask();
     stimeProjectionSubTask.setCodJob(toDto(entity).getCodJob());
     stimeProjectionSubTask.setCodTask(toDto(entity).getCodTask());
     stimeProjectionSubTask.setCodSubTask(toDto(entity).getDesTask());
     stimeProjectionSubTask.setDesSubTask(toDto(entity).getDesSubtask());
+    return stimeProjectionSubTask;
+  }
+
+  public StimeProjectionSubTask FromDtoToProjectionSubTask(StimeDTO dto) {
+    StimeProjectionSubTask stimeProjectionSubTask = new StimeProjectionSubTask();
+    stimeProjectionSubTask.setCodJob(dto.getCodJob());
+    stimeProjectionSubTask.setCodTask(dto.getCodTask());
+    stimeProjectionSubTask.setCodSubTask(dto.getDesTask());
+    stimeProjectionSubTask.setDesSubTask(dto.getDesSubtask());
     return stimeProjectionSubTask;
   }
 }

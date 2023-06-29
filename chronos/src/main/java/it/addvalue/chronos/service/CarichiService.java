@@ -9,6 +9,7 @@ import it.addvalue.chronos.repository.CarichiRepository;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import it.addvalue.chronos.repository.IUserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,12 +26,12 @@ public class CarichiService {
   @Autowired private CarichiDTOEntityMapper caricoEM;
   @Autowired private IUserRepository userRepository;
 
-  public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO) //TESTATO FUNZIONA
+  public boolean modificaElencoCarichi(List<carichiDTO> carichiDTO) // TESTATO FUNZIONA
       throws EsecuzioneErrataException {
     List<CarichiEntity> listaCarichi = caricoEM.toEntities(carichiDTO);
     for (CarichiEntity caricoAggiornato : listaCarichi) {
       Optional<CarichiEntity> change = caricoRepository.findById(caricoAggiornato.getIdCarico());
-      if (change.isPresent()&& isVerificato(change.get())) {
+      if (change.isPresent() && isVerificato(change.get())) {
         caricoRepository.save(caricoAggiornato);
       } else {
         throw new EsecuzioneErrataException("Errore: il carico non esiste nel database");
@@ -39,7 +40,7 @@ public class CarichiService {
     return true;
   }
 
-  public List<carichiDTO> getElencoCarichiGiorno( //DA TESTARE
+  public List<carichiDTO> getElencoCarichiGiorno( // DA TESTARE
       int anno, int mese, String giorno, String codiceUtente) {
     if (giorno == null) {
       // Recupera tutti i carichi del mese
@@ -66,25 +67,27 @@ public class CarichiService {
     return !statoMeseList.isEmpty();
   }
 
-  public boolean delete(List<carichiDTO> carichiDtoList) throws EsecuzioneErrataException { //TESTATO FUNZIONA
+  public boolean delete(List<carichiDTO> carichiDtoList)
+      throws EsecuzioneErrataException { // TESTATO FUNZIONA
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiDtoList);
     User utente;
-    int auto;
     for (CarichiEntity carico : carichiEntities) {
-      if(!caricoRepository.existsById(carico.getIdCarico())){
+      if (!caricoRepository.existsById(carico.getIdCarico())) {
         throw new EsecuzioneErrataException("il carico non esiste.");
       }
-      utente= userRepository.findByUserCode(carico.getCodUtente());
+      utente = userRepository.findByUserCode(carico.getCodUtente());
       if (carico.getMese() == LocalDate.now().getMonthValue() || utente.getLevel() <= 3) {
         caricoRepository.delete(carico);
       } else {
-        throw new EsecuzioneErrataException("Impossibile eseguire l'operazione. il mese e terminato o il livello utenete non e adeguato.");
+        throw new EsecuzioneErrataException(
+            "Impossibile eseguire l'operazione. il mese e terminato o il livello utenete non e adeguato.");
       }
     }
     return true;
   }
 
-  public boolean salvataggio(List<carichiDTO> carichiToSave) throws EsecuzioneErrataException { //TESTATO FUNZIONA
+  public boolean salvataggio(List<carichiDTO> carichiToSave)
+      throws EsecuzioneErrataException { // TESTATO FUNZIONA
     List<CarichiEntity> carichiEntities = caricoEM.toEntities(carichiToSave);
     List<CarichiEntity> carichiDaSalvare = new ArrayList<>();
     int oreTot = 0;
@@ -92,8 +95,6 @@ public class CarichiService {
       if (isVerificato(carico)) {
         carichiDaSalvare.add(carico);
         oreTot += carico.getOre();
-      } else {
-        throw new EsecuzioneErrataException("Impossibile eseguire l'operazione.");
       }
     }
 
@@ -105,7 +106,8 @@ public class CarichiService {
     return true;
   }
 
-  public boolean isVerificato(CarichiEntity carico) throws EsecuzioneErrataException { //TESTATO FUNZIONA
+  public boolean isVerificato(@NotNull CarichiEntity carico)
+      throws EsecuzioneErrataException { // TESTATO FUNZIONA
     User utente = this.userRepository.findByUserCode(carico.getCodUtente());
     if ((carico.getCodJob() != null
             && carico.getCodTask() != null
@@ -154,14 +156,8 @@ public class CarichiService {
     return true;
   }
 
-  public boolean presenzaCarichi( //TESTATO FUNZIONA
-          int anno, int mese, int giorno, String codiceUtente, String codJob) {
-    if (caricoRepository
-            .queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob)
-            .isEmpty()) {
-      return false;
-    } else {
-      return true;
-    }
+  public boolean presenzaCarichi( int anno, int mese, int giorno, String codiceUtente, String codJob) {
+    return !caricoRepository.queryPresenzaCarichi(anno, mese, giorno, codiceUtente, codJob).isEmpty();
+
   }
 }

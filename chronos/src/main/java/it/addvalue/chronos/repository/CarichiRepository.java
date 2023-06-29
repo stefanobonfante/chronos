@@ -36,9 +36,9 @@ public interface CarichiRepository extends JpaRepository<CarichiEntity, String> 
   List<CarichiEntity> queryStatoMese(int anno, int mese, String codiceUtente, String chiuso);
 
   @Query(
-          value =
-                  "select * from TB_CARICHI where ANNO=?1 and MESE=?2 and GIORNO=?3 and COD_UTENTE=?4 and COD_JOB=?5",
-          nativeQuery = true)
+      value =
+          "select * from TB_CARICHI where ANNO=?1 and MESE=?2 and GIORNO=?3 and COD_UTENTE=?4 and COD_JOB=?5",
+      nativeQuery = true)
   List<CarichiEntity> queryPresenzaCarichi(
-          int anno, int mese, int giorno, String codiceUtente, String codJob);
+      int anno, int mese, int giorno, String codiceUtente, String codJob);
 }

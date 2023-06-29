@@ -3425,3 +3425,34 @@ Caused by: org.springframework.data.mapping.PropertyReferenceException: No prope
 2023-06-28 16:28:17.245  INFO 17544 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-06-28 16:28:17.248  INFO 17544 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
 2023-06-28 16:28:17.256  INFO 17544 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2023-06-29 12:30:36.111  INFO 31736 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Starting ChronosApplication using Java 11.0.18 on LAPTOP-FDE7GG1I with PID 31736 (C:\Users\Carlo\OneDrive - Università degli Studi di Padova\Desktop\Giordano\Chronos\chronos\target\classes started by Carlo in C:\Users\Carlo\OneDrive - Università degli Studi di Padova\Desktop\Giordano\Chronos)
+2023-06-29 12:30:36.116 DEBUG 31736 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Running with Spring Boot v2.4.3, Spring v5.3.4
+2023-06-29 12:30:36.116  INFO 31736 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : The following profiles are active: dev
+2023-06-29 12:30:36.210  INFO 31736 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-06-29 12:30:36.211  INFO 31736 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-06-29 12:30:37.998  INFO 31736 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-06-29 12:30:38.128  INFO 31736 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 9 JPA repository interfaces.
+2023-06-29 12:30:39.456  INFO 31736 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-06-29 12:30:39.472  INFO 31736 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-06-29 12:30:39.473  INFO 31736 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2023-06-29 12:30:39.607  INFO 31736 --- [restartedMain] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring embedded WebApplicationContext
+2023-06-29 12:30:39.608  INFO 31736 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3396 ms
+2023-06-29 12:30:40.100  INFO 31736 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-06-29 12:30:40.190  INFO 31736 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.28.Final
+2023-06-29 12:30:40.369  INFO 31736 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-06-29 12:30:40.531  INFO 31736 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-06-29 12:30:40.990  INFO 31736 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-06-29 12:30:41.018  INFO 31736 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLServer2012Dialect
+2023-06-29 12:30:42.273  INFO 31736 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-06-29 12:30:42.284  INFO 31736 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 12:30:43.405  WARN 31736 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-06-29 12:30:43.641  INFO 31736 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2023-06-29 12:30:43.815  INFO 31736 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-06-29 12:30:44.170  INFO 31736 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/chronos'
+2023-06-29 12:30:44.779  INFO 31736 --- [restartedMain] it.addvalue.chronos.ChronosApplication   : Started ChronosApplication in 9.441 seconds (JVM running for 10.419)
+2023-06-29 12:30:56.527  INFO 31736 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/chronos]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-06-29 12:30:56.529  INFO 31736 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-06-29 12:30:56.532  INFO 31736 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-06-29 12:54:54.275  INFO 31736 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-06-29 12:54:54.288  INFO 31736 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-06-29 12:54:54.302  INFO 31736 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

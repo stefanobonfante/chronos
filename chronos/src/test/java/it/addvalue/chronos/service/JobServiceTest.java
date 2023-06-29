@@ -2,7 +2,6 @@ package it.addvalue.chronos.service;
 
 import it.addvalue.chronos.core.exception.CustomException;
 import it.addvalue.chronos.model.dto.JobDto;
-import it.addvalue.chronos.model.dto.JobStatoDto;
 import it.addvalue.chronos.model.entity.JobEntity;
 import it.addvalue.chronos.model.entity.JobStatoEntity;
 import it.addvalue.chronos.model.entity.JobTipoEntity;
@@ -27,7 +26,6 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class JobServiceTest {
@@ -47,8 +45,6 @@ public class JobServiceTest {
 
     jobService.recuperoStatiJob();
 
-
-
     Assert.assertNotNull(result);
     Assert.assertEquals(jobEntity, result.get(0));
   }
@@ -61,11 +57,10 @@ public class JobServiceTest {
 
     jobService.recuperoTipoJob();
 
-
-
     Assert.assertNotNull(result);
     Assert.assertEquals(jobEntity, result.get(0));
   }
+
   @Test
   public void SalvataggioJobTest1() throws CustomException {
     JobEntity jobEntity = mapperEntity();
@@ -73,12 +68,11 @@ public class JobServiceTest {
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(false);
     Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
     Mockito.when(jobMapper.toEntity(any(JobDto.class))).thenReturn(mapperEntity());
-    List<JobDto> jobs =
-            getListJob();
+    List<JobDto> jobs = getListJob();
     jobService.salvataggioJob(jobs);
     Mockito.verify(jobMapper).toEntity(any(JobDto.class));
     Mockito.verify(jobRepository).save(jobEntity);
-    //doThrow(new CustomException("ERRORE")).when(jobRepository).save(jobEntity);
+    // doThrow(new CustomException("ERRORE")).when(jobRepository).save(jobEntity);
   }
 
   @Test
@@ -88,57 +82,58 @@ public class JobServiceTest {
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
     Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
     Mockito.when(jobMapper.toEntity(any(JobDto.class))).thenReturn(mapperEntity());
-    List<JobDto> jobs =
-            getListJob();
-    assertThatThrownBy(()->jobService.salvataggioJob(jobs)).isInstanceOf(CustomException.class).hasMessage("Errore codice Job già presente nel DB, riprovare");
+    List<JobDto> jobs = getListJob();
+    assertThatThrownBy(() -> jobService.salvataggioJob(jobs))
+        .isInstanceOf(CustomException.class)
+        .hasMessage("Errore codice Job già presente nel DB, riprovare");
   }
 
   private static List<JobDto> getListJob() {
     return Arrays.asList(
-            new JobDto(
-                    "AADD13009",
-                    "Fatturazione",
-                    "Fatturazione",
-                    "0",
-                    "ADV",
-                    "ADV",
-                    "domenicm",
-                    new BigDecimal(0.0000),
-                    "",
-                    "S",
-                    "20110101",
-                    "C",
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    new BigDecimal(0.0000),
-                    "",
-                    "N",
-                    "",
-                    "00010101",
-                    "0",
-                    "00010101",
-                    "Nessuno",
-                    "Nessuno",
-                    "Nessuno",
-                    "N",
-                    new BigDecimal(0.0000),
-                    "Nessuna",
-                    "00010101",
-                    new BigDecimal(0.0000),
-                    "N",
-                    "N",
-                    "N",
-                    "N",
-                    "N",
-                    "O",
-                    "S",
-                    "N"));
+        new JobDto(
+            "AADD13009",
+            "Fatturazione",
+            "Fatturazione",
+            "0",
+            "ADV",
+            "ADV",
+            "domenicm",
+            new BigDecimal(0.0000),
+            "",
+            "S",
+            "20110101",
+            "C",
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            new BigDecimal(0.0000),
+            "",
+            "N",
+            "",
+            "00010101",
+            "0",
+            "00010101",
+            "Nessuno",
+            "Nessuno",
+            "Nessuno",
+            "N",
+            new BigDecimal(0.0000),
+            "Nessuna",
+            "00010101",
+            new BigDecimal(0.0000),
+            "N",
+            "N",
+            "N",
+            "N",
+            "N",
+            "O",
+            "S",
+            "N"));
   }
 
   @Test
@@ -148,8 +143,7 @@ public class JobServiceTest {
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
     Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
     Mockito.when(jobMapper.toEntity(any(JobDto.class))).thenReturn(mapperEntity());
-    List<JobDto> jobs =
-            getListJob();
+    List<JobDto> jobs = getListJob();
     jobService.modificaJob(jobs);
     Mockito.verify(jobMapper).toEntity(any(JobDto.class));
     Mockito.verify(jobRepository).save(jobEntity);
@@ -165,7 +159,9 @@ public class JobServiceTest {
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
     Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
     List<JobDto> jobs = asList(jobDto);
-    assertThatThrownBy(()->jobService.modificaJob(jobs)).isInstanceOf(CustomException.class).hasMessage("Errore campo obbligatorio mancante, riprovare");
+    assertThatThrownBy(() -> jobService.modificaJob(jobs))
+        .isInstanceOf(CustomException.class)
+        .hasMessage("Errore campo obbligatorio mancante, riprovare");
   }
 
   @Test
@@ -176,9 +172,10 @@ public class JobServiceTest {
     Mockito.when(jobRepository.existsById(jobDto.getCodJob())).thenReturn(true);
     Mockito.when(jobMapper.toEntity(jobDto)).thenReturn(mapperEntity());
     List<JobDto> jobs = asList(jobDto);
-    assertThatThrownBy(()->jobService.modificaJob(jobs)).isInstanceOf(CustomException.class).hasMessage("Attenzione!!! campi non correttamente valorizzati. Salvataggio non eseguito");
+    assertThatThrownBy(() -> jobService.modificaJob(jobs))
+        .isInstanceOf(CustomException.class)
+        .hasMessage("Attenzione!!! campi non correttamente valorizzati. Salvataggio non eseguito");
   }
-
 
   @Test
   public void ControlloChiusuraJobTest1() throws CustomException {
@@ -362,19 +359,25 @@ public class JobServiceTest {
         "N");
   }
 
-  private JobStatoEntity mapperStatoDto(){
-    return new JobStatoEntity("A","Aperto");
+  private JobStatoEntity mapperStatoDto() {
+    return new JobStatoEntity("A", "Aperto");
   }
 
-  private JobTipoEntity mapperTipoDto(){
-    return new JobTipoEntity("C","Consulenza","N","N","");
+  private JobTipoEntity mapperTipoDto() {
+    return new JobTipoEntity("C", "Consulenza", "N", "N", "");
   }
+
   public List<JobTipoEntity> ottieniTipoJob() {
-    return asList(new JobTipoEntity("C","Consulenza","N","N",""), new JobTipoEntity("P","Progetto","N","N","B"));
+    return asList(
+        new JobTipoEntity("C", "Consulenza", "N", "N", ""),
+        new JobTipoEntity("P", "Progetto", "N", "N", "B"));
   }
 
   public List<JobStatoEntity> ottieniStatiJob() {
-    return asList(new JobStatoEntity("A","Aperto"),new JobStatoEntity("C","Chiuso"),new JobStatoEntity("N","Non accettabile"));
+    return asList(
+        new JobStatoEntity("A", "Aperto"),
+        new JobStatoEntity("C", "Chiuso"),
+        new JobStatoEntity("N", "Non accettabile"));
   }
 
   private boolean existsById() {

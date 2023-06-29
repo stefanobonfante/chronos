@@ -14,7 +14,6 @@ import javax.persistence.*;
 public class CarichiEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private String IdCarico;
 
   @Column(name = "COD_UTENTE")

@@ -18,11 +18,15 @@ public class StimeController {
   @Autowired public final StimeService stimeService;
 
   @GetMapping(path = "getTask")
-  public ResponseEntity<List<StimeProjection>> getTask(@RequestParam String cod_job) throws EsecuzioneErrataException {
+  public ResponseEntity<List<StimeProjection>> getTask(@RequestParam String cod_job)
+      throws EsecuzioneErrataException {
     return ResponseEntity.ok(stimeService.recuperoTask(cod_job));
   }
+
   @GetMapping(path = "getSubTask")
-  public ResponseEntity<List<StimeProjectionSubTask>> getSubTask(@RequestParam String cod_job, @RequestParam String cod_task){
-    return ResponseEntity.ok(stimeService.recuperoSubTask(cod_job,cod_task));
+  public ResponseEntity<List<StimeProjectionSubTask>> getSubTask(
+      @RequestParam String cod_job, @RequestParam String cod_task)
+      throws EsecuzioneErrataException {
+    return ResponseEntity.ok(stimeService.recuperoSubTask(cod_job, cod_task));
   }
 }

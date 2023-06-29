@@ -69,5 +69,5 @@ public class StimeTest {
 
     public List<StimeProjection> dammiUnaListaProjection(){
         return Arrays.asList(new StimeProjection("a", "a","a"));
-    }
+    }
 }
